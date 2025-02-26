@@ -11,9 +11,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -40,6 +44,34 @@ public class Ventana extends JFrame{
 		//this.add(this.tabla2());
 		this.add(this.login2());
 		this.add(this.imagen());
+		
+		//barra
+		JMenuBar barra = new JMenuBar();
+		JMenu file = new JMenu("Archivo");
+		barra.add(file);
+		
+		//para las opciones del menu
+		JMenuItem open = new JMenuItem("Abrir");
+		file.add(open);
+		
+		JMenuItem close = new JMenuItem("Cerrar");
+		file.add(close);
+		
+		JMenuItem guardar = new JMenuItem("Guardar");
+		file.add(guardar);
+		
+		JMenuItem guardarcomo = new JMenuItem("Guardar como");
+		file.add(guardarcomo);
+		
+		//para hacer otro menu
+		JMenu menu_2 = new JMenu("Ayuda");
+		barra.add(menu_2);
+		
+		JCheckBoxMenuItem op_5= new JCheckBoxMenuItem("Hola");
+		menu_2.add(op_5);	
+		
+		this.setJMenuBar(barra);
+		
 		this.repaint();
 		this.setVisible(true);
 	}
