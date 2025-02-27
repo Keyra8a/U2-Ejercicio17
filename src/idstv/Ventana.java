@@ -29,9 +29,9 @@ import javax.swing.JTextField;
 public class Ventana extends JFrame{
 
 	public Ventana() {
-		this.setTitle("Sing Up");//para el titulo de la ventana
+		this.setTitle("Calculadora");//para el titulo de la ventana
 		this.setVisible(true);
-		this.setSize(1000,500);
+		this.setSize(390,500);
 		
 		this.setLocationRelativeTo(null);
 		
@@ -39,13 +39,15 @@ public class Ventana extends JFrame{
 		
 		//this.setResizable(true);//para cambiar el tamaño de la ventana
 		this.setMaximumSize(new Dimension(1000,1000));
-		this.setMinimumSize(new Dimension(400,400));
+		this.setMinimumSize(new Dimension(390,400));
+		
 		
 		//this.add(this.tabla2());
-		this.add(this.login2());
-		this.add(this.imagen());
+		//this.add(this.login2());
+		//this.add(this.imagen());
+		this.add(this.calculadora());
 		
-		//barra
+		/*//barra
 		JMenuBar barra = new JMenuBar();
 		JMenu file = new JMenu("Archivo");
 		barra.add(file);
@@ -70,7 +72,7 @@ public class Ventana extends JFrame{
 		JCheckBoxMenuItem op_5= new JCheckBoxMenuItem("Hola");
 		menu_2.add(op_5);	
 		
-		this.setJMenuBar(barra);
+		this.setJMenuBar(barra);*/
 		
 		this.repaint();
 		this.setVisible(true);
@@ -140,16 +142,9 @@ public class Ventana extends JFrame{
 		btnAcceder .setFont(new Font("American TYpewrite", Font.BOLD, 20));
 		panel.add(btnAcceder );
 		
-		
-		
-		
-		
-		
 		return panel;
 	}
-
 	public JPanel registro() {
-
 		
 		JPanel panel = new JPanel();
 		
@@ -274,7 +269,6 @@ public class Ventana extends JFrame{
 	
 		return panel;
 	}
-	
 	public JPanel tabla2()
 	{
 		JPanel panel = new JPanel();
@@ -396,7 +390,6 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
-	
 	public JPanel login2() {
 		
 		JPanel panel = new JPanel();
@@ -509,6 +502,181 @@ public class Ventana extends JFrame{
 		 return panel;
 	}
 
+	public JPanel calculadora(){
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#380038")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(50,500);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JTextField txtVentana = new JTextField();
+		txtVentana.setHorizontalAlignment(JTextField.RIGHT);
+		//txtVentana.setForeground(Color.decode("#380038"));
+		txtVentana.setSize(350,80); //tamaño del recuadro
+		txtVentana.setLocation(10,10);
+		txtVentana.setFont(new Font("Arial Rounded MT", Font.BOLD, 50));
+		panel.add(txtVentana);	
+		
+		//BOTON CE
+		Button btn1 = new Button("CE");
+		btn1.setSize(80,60);
+		btn1.setLocation(10,100);
+		btn1.setBackground((Color.decode("#d97dd5")));
+		//btn1.setHorizontalAlignment(JLabel.CENTER);
+		btn1.setFont(new Font("Arial Rounded MT", Font.BOLD, 20));
+		panel.add(btn1);
+		
+		
+		//LINEA VERTICAL 1 -------------------------------------------------
+		//BOTON CE
+		
+		//display (todo)
+		Button btn2 = new Button("%");
+		btn2.setSize(260,60);
+		btn2.setLocation(100,100);
+		btn2.setBackground((Color.decode("#d97dd5")));
+		//btn2.setHorizontalAlignment(JLabel.CENTER);
+		btn2.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btn2);
+		
+		
+		Button btnNum7 = new Button("7");
+		btnNum7.setSize(80,60);
+		btnNum7.setLocation(10,170);
+		//btnNum7.setBackground((Color.decode("#bd9892")));
+		//btnNum7.setHorizontalAlignment(JLabel.CENTER);
+		btnNum7.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum7);
+		
+		
+		Button btnNum4 = new Button("4");
+		btnNum4.setSize(80,60);
+		btnNum4.setLocation(10,240);
+		//btnNum4.setBackground((Color.decode("#bd9892")));
+		//btnNum4.setHorizontalAlignment(JLabel.CENTER);
+		btnNum4.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum4);
+		
+		Button btnNum1 = new Button("1");
+		btnNum1.setSize(80,60);
+		btnNum1.setLocation(10,310);
+		//btnNum1.setBackground((Color.decode("#bd9892")));
+		//btnNum1.setHorizontalAlignment(JLabel.CENTER);
+		btnNum1.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum1);
+		
+		Button btnNum0 = new Button("0");
+		btnNum0.setSize(80,60);
+		btnNum0.setLocation(10,380);
+		//btnNum0.setBackground((Color.decode("#bd9892")));
+		//btnNum0.setHorizontalAlignment(JLabel.CENTER);
+		btnNum0.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum0);
+		//------------------------------------------------------------------------
+		//LINEA VERTICAL 2
+		Button btnNum8 = new Button("8");
+		btnNum8.setSize(80,60);
+		btnNum8.setLocation(100,170);
+		//btnNum8.setBackground((Color.decode("#bd9892")));
+		//btnNum8.setHorizontalAlignment(JLabel.CENTER);
+		btnNum8.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum8);
+		
+		Button btnNum5 = new Button("5");
+		btnNum5.setSize(80,60);
+		btnNum5.setLocation(100,240);
+		//btnNum5.setBackground((Color.decode("#bd9892")));
+		//btnNum5.setHorizontalAlignment(JLabel.CENTER);
+		btnNum5.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum5);
+		
+		Button btnNum2 = new Button("2");
+		btnNum2.setSize(80,60);
+		btnNum2.setLocation(100,310);
+		//btnNum2.setBackground((Color.decode("#bd9892")));
+		//btnNum2.setHorizontalAlignment(JLabel.CENTER);
+		btnNum2.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum2);
+		
+		Button btnPunto = new Button(".");
+		btnPunto.setSize(80,60);
+		btnPunto.setLocation(100,380);
+		//btnPunto.setBackground((Color.decode("#bd9892")));
+		//btnPunto.setHorizontalAlignment(JLabel.CENTER);
+		btnPunto.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnPunto);
+		//----------------------------------------------------------------
+		//LINEA VERTICAL 3
+		Button btnNum9 = new Button("9");
+		btnNum9.setSize(80,60);
+		btnNum9.setLocation(190,170);
+		//btnNum9.setBackground((Color.decode("#bd9892")));
+		//btnNum9.setHorizontalAlignment(JLabel.CENTER);
+		btnNum9.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum9);
+		
+		Button btnNum6 = new Button("6");
+		btnNum6.setSize(80,60);
+		btnNum6.setLocation(190,240);
+		//btnNum6.setBackground((Color.decode("#bd9892")));
+		//btnNum6.setHorizontalAlignment(JLabel.CENTER);
+		btnNum6.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum6);
+		
+		Button btnNum3 = new Button("3");
+		btnNum3.setSize(80,60);
+		btnNum3.setLocation(190,310);
+		//btnNum3.setBackground((Color.decode("#bd9892")));
+		//btnNum3.setHorizontalAlignment(JLabel.CENTER);
+		btnNum3.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnNum3);
+		
+		Button btnIgual = new Button("=");
+		btnIgual.setSize(80,60);
+		btnIgual.setLocation(190,380);
+		btnIgual.setBackground((Color.decode("#7b147b")));
+		//btnIgual.setHorizontalAlignment(JLabel.CENTER);
+		btnIgual.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnIgual);
+		//--------------------------------------------------------------
+		//LINEA VERTICAL 4
+		Button btnDiv = new Button("/");
+		btnDiv.setSize(80,60);
+		btnDiv.setLocation(280,170);
+		btnDiv.setBackground((Color.decode("#973095")));
+		//btnDiv.setHorizontalAlignment(JLabel.CENTER);
+		btnDiv.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnDiv);
+		
+		Button btnMulti = new Button("*");
+		btnMulti.setSize(80,60);
+		btnMulti.setLocation(280,240);
+		btnMulti.setBackground((Color.decode("#973095")));
+		//btnMulti.setHorizontalAlignment(JLabel.CENTER);
+		btnMulti.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnMulti);
+		
+		Button btnResta = new Button("-");
+		btnResta.setSize(80,60);
+		btnResta.setLocation(280,310);
+		btnResta.setBackground((Color.decode("#973095")));
+		//btnResta.setHorizontalAlignment(JLabel.CENTER);
+		btnResta.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnResta);
+
+		Button btnSuma = new Button("+");
+		btnSuma.setSize(80,60);
+		btnSuma.setLocation(280,380);
+		btnSuma.setBackground((Color.decode("#973095")));
+		//btnSuma.setHorizontalAlignment(JLabel.CENTER);
+		btnSuma.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnSuma);
+		
+		return panel;
+	}
 }
 
 
