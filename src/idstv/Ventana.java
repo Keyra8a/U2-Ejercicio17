@@ -1,16 +1,19 @@
 package idstv;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
@@ -48,11 +51,11 @@ public class Ventana extends JFrame{
 		this.setMinimumSize(new Dimension(390,400));
 		
 		
-		
+		this.add(this.calculadora2());
 		//this.add(this.tabla2());
 		//this.add(this.login2());
 		//this.add(this.imagen());
-		this.add(this.calculadora());
+		//this.add(this.calculadora2());
 		
 		/*//barra
 		JMenuBar barra = new JMenuBar();
@@ -685,6 +688,51 @@ public class Ventana extends JFrame{
 		return panel;
 	}
 	
+	public JPanel calculadora2() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#380038")); //PARA PONER OTRO COLOR 
+		panel.setOpaque(true);		
+		//Color.decode("numero del color que quieres"));
+		panel.setLayout(new BorderLayout());
+		
+		JLabel ventana = new JLabel("20.00");
+		ventana.setBackground(Color.BLACK);
+		ventana.setOpaque(true);
+		ventana.setFont(new Font("American TYpewrite", Font.BOLD, 40));
+		ventana.setHorizontalAlignment(JLabel.RIGHT);
+		panel.add(ventana,BorderLayout.NORTH);
+		
+		JPanel centro = new JPanel();
+		centro.setBackground(Color.BLUE);
+		centro.setOpaque(true);
+		centro.setLayout(new BorderLayout());
+		panel.add(centro,BorderLayout.CENTER);
+		
+		JPanel btns = new JPanel();
+		btns.setLayout(new GridLayout(4,3));
+		centro.add(btns,BorderLayout.CENTER);
+		
+		String[] campos = {"9", "8", "7", "6", "5", "4", "3", "2", "1", "0", "."};
+		
+		for(String campoBtn : campos) {
+			JButton boton = new JButton(campoBtn);
+			btns.add(boton);
+		}
+		
+		JPanel orilla = new JPanel();
+		orilla.setLayout(new GridLayout(6,1));
+		centro.add(orilla,BorderLayout.LINE_END);
+		
+		String[] campos1 = {"/", "*", "-", "+", "=","CE" };
+		
+		for(String campoBtn : campos1) {
+			JButton boton = new JButton(campoBtn);
+			orilla.add(boton);
+		}
+		
+		return panel;
+	}
 	
 	
 }
