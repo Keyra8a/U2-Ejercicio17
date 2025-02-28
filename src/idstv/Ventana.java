@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -33,6 +34,11 @@ public class Ventana extends JFrame{
 		this.setVisible(true);
 		this.setSize(390,500);
 		
+		//cambiar el icono a la ventana
+		ImageIcon img = new ImageIcon("src/api.png");
+		Image imagen = img.getImage();
+		setIconImage(imagen);
+		
 		this.setLocationRelativeTo(null);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//para cerrar todas las ventanas/dejar de correr el programa
@@ -40,6 +46,7 @@ public class Ventana extends JFrame{
 		//this.setResizable(true);//para cambiar el tamaño de la ventana
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
+		
 		
 		
 		//this.add(this.tabla2());
@@ -677,6 +684,9 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
+	
+	
+	
 }
 
 
