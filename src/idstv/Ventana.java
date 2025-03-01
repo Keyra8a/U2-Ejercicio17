@@ -33,7 +33,7 @@ import javax.swing.JTextField;
 public class Ventana extends JFrame{
 
 	public Ventana() {
-		this.setTitle("Calculadora");//para el titulo de la ventana
+		this.setTitle("Calculando el Interés");//para el titulo de la ventana
 		this.setVisible(true);
 		this.setSize(390,500);
 		
@@ -50,8 +50,8 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
 		
-		
-		this.add(this.calculadora2());
+		this.add(this.interfaz());
+		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
 		//this.add(this.login2());
 		//this.add(this.imagen());
@@ -733,7 +733,85 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
+
 	
+	public JPanel interfaz() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE); //PARA PONER OTRO COLOR 
+		panel.setOpaque(true);		
+		//Color.decode("numero del color que quieres"));
+		panel.setLayout(new BorderLayout());
+		
+		JLabel ventana = new JLabel("Interés");
+		ventana.setBorder(BorderFactory.createLineBorder(Color.WHITE,10));
+		ventana.setBorder(BorderFactory.createMatteBorder(0, 10, 1, 1, Color.WHITE));
+		ventana.setOpaque(true);
+		ventana.setForeground(Color.RED);
+		ventana.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+		ventana.setHorizontalAlignment(JLabel.LEFT);
+		panel.add(ventana,BorderLayout.NORTH);
+		
+		
+		//PARA EL PANEL CENTRAL
+		JPanel centro = new JPanel();
+		centro.setBorder(BorderFactory.createLineBorder(Color.WHITE,30));
+		centro.setOpaque(true);
+		centro.setBackground(Color.decode("#9de488"));
+
+		String [] textos = {"Capital:", "Tiempo:","Tasa de Interés:"};
+		for(String textoo : textos) {
+			JLabel lbltexto = new JLabel(textoo);
+			lbltexto.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+			lbltexto.setBorder(BorderFactory.createMatteBorder(10, 40, 1, 1, Color.decode("#9de488")));
+			centro.add(lbltexto);
+			JTextField txtCampo = new JTextField();
+			txtCampo.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+			txtCampo.setBorder(BorderFactory.createMatteBorder(10, 10, 0, 20, Color.decode("#9de488")));
+			centro.add(txtCampo);
+		}
+		String[] campos = {"Calcular", "Cancelar"};
+		for(String campoBtn : campos) {
+			JButton boton = new JButton(campoBtn);
+			boton.setBackground(Color.BLACK);
+			boton.setForeground(Color.WHITE);
+			boton.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+			//boton.setBorder(BorderFactory.createLineBorder(Color.GREEN,20));
+			//boton.setBorder(BorderFactory.createMatteBorder(10, 80, 0, 1, Color.GREEN));
+			centro.add(boton);
+		}
+		centro.setLayout(new GridLayout(4,4,10,30));
+		panel.add(centro,BorderLayout.CENTER);
+
+		
+		
+		//PARA EL PANEL INFERIOR
+		JPanel footer = new JPanel();
+		footer.setBorder(BorderFactory.createLineBorder(Color.WHITE,30));
+		footer.setOpaque(true);
+		footer.setBackground(Color.decode("#ffa8d9"));
+		
+		String [] txt = {"Interes", "Monto"};
+		for(String txts : txt) {
+			JLabel lbltexto1 = new JLabel(txts);
+			lbltexto1.setBorder(BorderFactory.createMatteBorder(10, 80, 1, 1, Color.decode("#ffa8d9")));
+			lbltexto1.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+			footer.add(lbltexto1);
+			JTextField txtCampos = new JTextField();
+			txtCampos.setFont(new Font("Baskerville Old Face", Font.BOLD, 20));
+			txtCampos.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 20, Color.decode("#ffa8d9")));
+			
+			footer.add(txtCampos);
+		}
+		footer.setLayout(new GridLayout(2,2,20,20));
+		panel.add(footer,BorderLayout.SOUTH);
+		
+	
+		
+		
+		
+		return panel;
+	}
 	
 }
 
