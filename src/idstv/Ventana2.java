@@ -168,11 +168,6 @@ public class Ventana2 {
 		lblPerfilUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_5.add(lblPerfilUsuario);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\usuario-femenino (1).png"));
-		lblNewLabel.setBounds(107, 10, 127, 154);
-		panel_5.add(lblNewLabel);
-		
 		JCheckBox chckbxMosFotoPerfil = new JCheckBox("Mostrar Foto de Perfil");
 		chckbxMosFotoPerfil.setFont(new Font("Trebuchet MS", Font.PLAIN, 12));
 		chckbxMosFotoPerfil.setBackground(new Color(255, 128, 128));
@@ -184,6 +179,11 @@ public class Ventana2 {
 		chckbxNewCheckBox_1.setBackground(new Color(255, 128, 128));
 		chckbxNewCheckBox_1.setBounds(88, 204, 231, 21);
 		panel_5.add(chckbxNewCheckBox_1);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\usuario-femenino (3).png"));
+		lblNewLabel.setBounds(99, 52, 123, 112);
+		panel_5.add(lblNewLabel);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 128, 128));

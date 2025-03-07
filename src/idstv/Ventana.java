@@ -1,15 +1,22 @@
 package idstv;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -35,7 +42,7 @@ public class Ventana extends JFrame{
 	public Ventana() {
 		this.setTitle("Calculando el Interés");//para el titulo de la ventana
 		this.setVisible(true);
-		this.setSize(390,500);
+		this.setSize(800,600);
 		
 		//cambiar el icono a la ventana
 		ImageIcon img = new ImageIcon("src/api.png");
@@ -50,7 +57,7 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
 		
-		this.add(this.interfaz());
+		//this.add(this.interfaz());
 		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
 		//this.add(this.login2());
@@ -812,6 +819,65 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
+	
+	@Override
+	public void paint(Graphics g) {
+		
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g.create();
+		//para la linea del grosor
+		g2d.setStroke(new BasicStroke(5));
+		//para un cuadrado
+		g2d.drawRect(100, 100, 80, 80);
+		g2d.fillRect(120, 120, 80, 80);
+		
+		//g2d.setColor(Color.DARK_GRAY);
+		
+		g2d.setColor(Color.BLUE);
+		//para escribir
+		g2d.setFont(new Font("Baskerville Old Face", Font.BOLD, 40));
+		g2d.drawString("Keyra", 160, 300);
+		
+		
+		//para pintar una linea
+		g2d.drawLine(0,0,400,400);
+		
+		//para el arco. fill es para rellenar de color el arco 
+		g2d.drawArc(400,100,100,100,0,180);
+		g2d.fillArc(400,100,100,100,0,-180);
+		
+		//ovalo
+		g2d.drawOval(100,400,90,190);
+		
+		g2d.fillOval(140,400,90,190);
+		g2d.setColor(Color.BLACK);
+		
+		//imagen
+		try {
+			BufferedImage image = ImageIO.read(new File("src/animal.png"));
+			g2d.drawImage(image, 500, 50, null);
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//poligono
+		int[] xs= {400,350,450};
+		int[] ys = {200,250,250};
+		g2d.drawPolygon(xs,ys,3);
+		
+		int[] xs2= {400,350,450};
+		int[] ys2 = {200,250,250};
+		g2d.fillPolygon(xs2,ys2,3);
+		
+		//rectangulo
+		g2d.drawRoundRect(500,400,100,100,30,30);
+		g2d.fillRoundRect(550,440,100,100,30,30);
+		
+	}
+	
 	
 }
 
