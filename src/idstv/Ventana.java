@@ -12,6 +12,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,9 +42,9 @@ import javax.swing.JTextField;
 public class Ventana extends JFrame{
 
 	public Ventana() {
-		this.setTitle("Calculando el Interés");//para el titulo de la ventana
+		this.setTitle("");//para el titulo de la ventana
 		this.setVisible(true);
-		this.setSize(800,600);
+		this.setSize(1000,1000);
 		
 		//cambiar el icono a la ventana
 		ImageIcon img = new ImageIcon("src/api.png");
@@ -53,6 +55,7 @@ public class Ventana extends JFrame{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//para cerrar todas las ventanas/dejar de correr el programa
 		
+		this.setLayout(new BorderLayout());
 		//this.setResizable(true);//para cambiar el tamaño de la ventana
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
@@ -60,7 +63,8 @@ public class Ventana extends JFrame{
 		//this.add(this.interfaz());
 		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
-		//this.add(this.login2());
+		this.add(this.login(), BorderLayout.WEST);
+		this.add(this.registro(), BorderLayout.EAST);
 		//this.add(this.imagen());
 		//this.add(this.calculadora2());
 		
@@ -101,9 +105,11 @@ public class Ventana extends JFrame{
 		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(500,1000);
+		panel.setSize(500,800);
 		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
+		
+		panel.setPreferredSize(new Dimension(500,1000));
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setSize(230,40); //tamaño
@@ -132,7 +138,7 @@ public class Ventana extends JFrame{
 		lblContra.setFont(new Font("American TYpewrite", Font.BOLD, 20));
 		panel.add(lblContra);
 		
-		JTextField txtcontra = new JTextField();
+		JPasswordField txtcontra = new JPasswordField();
 		txtcontra.setSize(350,30); //tamaño del recuadro
 		txtcontra.setLocation(60,225);
 		txtcontra.setFont(new Font("American TYpewrite", Font.BOLD, 20));
@@ -157,8 +163,28 @@ public class Ventana extends JFrame{
 		btnAcceder.setBackground((Color.decode("#bd9892")));
 		//btn1.setHorizontalAlignment(JLabel.CENTER);
 		btnAcceder .setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(btnAcceder );
 		
+		btnAcceder.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(txtEmail.getText().equals("")) {
+					txtEmail.setBorder(BorderFactory.createLineBorder(Color.red,3));
+				}else {
+					txtEmail.setBorder(BorderFactory.createLineBorder(Color.green,3));
+				}
+				
+				String password = new String(txtcontra.getPassword());
+				if(password.equals("")) {
+					txtcontra.setBorder(BorderFactory.createLineBorder(Color.red,3));
+				}else {
+					txtcontra.setBorder(BorderFactory.createLineBorder(Color.green,3));
+				}
+					
+			}
+		});;
+		
+		panel.add(btnAcceder );
 		return panel;
 	}
 	public JPanel registro() {
@@ -168,9 +194,11 @@ public class Ventana extends JFrame{
 		panel.setBackground(Color.decode("#bd9892")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(500,1000);
-		panel.setLocation(0,0);
+		panel.setSize(500,800);
+		panel.setLocation(500,0);
 		panel.setLayout(null);//quita el molde
+		
+		panel.setPreferredSize(new Dimension(500,1000));
 		
 		JLabel lblRegistro = new JLabel("Registro");
 		lblRegistro.setSize(230,40); //tamaño
@@ -284,6 +312,23 @@ public class Ventana extends JFrame{
 		btnCrearCuenta.setFont(new Font("American TYpewrite", Font.BOLD, 20));
 		panel.add(btnCrearCuenta);
 	
+		btnCrearCuenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(txtNomUsuario.getText().equals("")) {
+					txtNomUsuario.setBorder(BorderFactory.createLineBorder(Color.red,3));
+				}else {
+					txtNomUsuario.setBorder(BorderFactory.createLineBorder(Color.green,3));
+				}
+				if(txtAreaBio.getText().equals("")) {
+					txtAreaBio.setBorder(BorderFactory.createLineBorder(Color.red,3));
+				}else {
+					txtAreaBio.setBorder(BorderFactory.createLineBorder(Color.green,3));
+				}
+			}
+		});
+		
 		return panel;
 	}
 	public JPanel tabla2()
@@ -518,7 +563,6 @@ public class Ventana extends JFrame{
 
 		 return panel;
 	}
-
 	public JPanel calculadora(){
 		
 		JPanel panel = new JPanel();
@@ -694,7 +738,6 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
-	
 	public JPanel calculadora2() {
 		
 		JPanel panel = new JPanel();
@@ -740,8 +783,6 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
-
-	
 	public JPanel interfaz() {
 		
 		JPanel panel = new JPanel();
@@ -819,8 +860,7 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
-	
-	@Override
+	/*@Override
 	public void paint(Graphics g) {
 		
 		super.paint(g);
@@ -876,7 +916,7 @@ public class Ventana extends JFrame{
 		g2d.drawRoundRect(500,400,100,100,30,30);
 		g2d.fillRoundRect(550,440,100,100,30,30);
 		
-	}
+	}*/
 	
 	
 }
