@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -168,10 +169,14 @@ public class Ventana extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				boolean flag1 = false, flag2 = true;
+				
 				if(txtEmail.getText().equals("")) {
 					txtEmail.setBorder(BorderFactory.createLineBorder(Color.red,3));
 				}else {
 					txtEmail.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					flag1=true;
 				}
 				
 				String password = new String(txtcontra.getPassword());
@@ -179,10 +184,24 @@ public class Ventana extends JFrame{
 					txtcontra.setBorder(BorderFactory.createLineBorder(Color.red,3));
 				}else {
 					txtcontra.setBorder(BorderFactory.createLineBorder(Color.green,3));
+					flag2=true;
+				}
+				
+				if(flag1 && flag2) {
+					if(txtEmail.getText().equals("keyraochoa321@gmail.com")) {
+						if(password.equals("keyrita")){
+							JOptionPane.showMessageDialog(null, "Hola","Error",JOptionPane.WARNING_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Hola","Error",JOptionPane.ERROR_MESSAGE);
+						}
+						
+					}
 				}
 					
 			}
-		});;
+		});
+		
+		;
 		
 		panel.add(btnAcceder );
 		return panel;
