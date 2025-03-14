@@ -56,7 +56,7 @@ public class Ventana extends JFrame{
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//para cerrar todas las ventanas/dejar de correr el programa
 		
-		this.setLayout(new BorderLayout());
+//		this.setLayout(new BorderLayout());
 		//this.setResizable(true);//para cambiar el tamaño de la ventana
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
@@ -64,12 +64,12 @@ public class Ventana extends JFrame{
 		//this.add(this.interfaz());
 		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
-		this.add(this.login(), BorderLayout.WEST);
-		this.add(this.registro(), BorderLayout.EAST);
+		this.add(this.login());
+//		this.add(this.registro(), BorderLayout.EAST);
 		//this.add(this.imagen());
 		//this.add(this.calculadora2());
 		
-		/*//barra
+		//barra
 		JMenuBar barra = new JMenuBar();
 		JMenu file = new JMenu("Archivo");
 		barra.add(file);
@@ -94,7 +94,7 @@ public class Ventana extends JFrame{
 		JCheckBoxMenuItem op_5= new JCheckBoxMenuItem("Hola");
 		menu_2.add(op_5);	
 		
-		this.setJMenuBar(barra);*/
+		this.setJMenuBar(barra);
 		
 		this.repaint();
 		this.setVisible(true);
@@ -200,12 +200,28 @@ public class Ventana extends JFrame{
 					
 			}
 		});
-		
-		;
-		
 		panel.add(btnAcceder );
+		
+		Button btnIrRegistro = new Button("Ir al registro");
+		btnIrRegistro .setSize(350,40); //tamaño
+		btnIrRegistro .setLocation(60,400);
+		btnAcceder.setBackground((Color.decode("#bd9892")));
+		//btn1.setHorizontalAlignment(JLabel.CENTER);
+		btnIrRegistro .setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnIrRegistro);
+		
+		btnIrRegistro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("register");
+				
+			}
+		});
+		
 		return panel;
 	}
+	
 	public JPanel registro() {
 		
 		JPanel panel = new JPanel();
@@ -213,8 +229,8 @@ public class Ventana extends JFrame{
 		panel.setBackground(Color.decode("#bd9892")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(500,800);
-		panel.setLocation(500,0);
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
 		
 		panel.setPreferredSize(new Dimension(500,1000));
@@ -347,9 +363,41 @@ public class Ventana extends JFrame{
 				}
 			}
 		});
+		panel.add(btnCrearCuenta);
+		
+		Button btnIrAlLogin = new Button("Ir al Login");
+		btnIrAlLogin.setSize(350,40); //tamaño
+		btnIrAlLogin.setLocation(70,650);
+		//btnCrearCuenta.setOpaque(true);
+		btnIrAlLogin.setBackground(Color.decode("#ffe5dd"));
+		//btn1.setHorizontalAlignment(JLabel.CENTER);
+		btnIrAlLogin.setFont(new Font("American TYpewrite", Font.BOLD, 20));
+		panel.add(btnIrAlLogin);
+		
+		btnIrAlLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
+	
+	public void router(String route) {
+		this.getContentPane().removeAll();
+		
+		if(route.equals("register")){
+			this.add(this.registro());
+		}
+		if(route.equals("login")){
+			this.add(this.login());
+		}
+		this.repaint();
+	}
+
 	public JPanel tabla2()
 	{
 		JPanel panel = new JPanel();
