@@ -71,72 +71,137 @@ public class Ventana extends JFrame{
 		
 		//barra
 		JMenuBar barra = new JMenuBar();
-		JMenu file = new JMenu("Archivo");
-		barra.add(file);
+		JMenu cuenta = new JMenu("Cuenta");
+		barra.add(cuenta);
 		
-		//para las opciones del menu
-		JMenuItem open = new JMenuItem("Abrir");
-		file.add(open);
-		
-		JMenuItem close = new JMenuItem("Cerrar");
-		file.add(close);
-		
-		JMenuItem guardar = new JMenuItem("Guardar");
-		file.add(guardar);
-		
-		JMenuItem guardarcomo = new JMenuItem("Guardar como");
-		file.add(guardarcomo);
-		
-		//para hacer otro menu
-		JMenu menu_2 = new JMenu("Ayuda");
-		barra.add(menu_2);
-		
-		JCheckBoxMenuItem op_5= new JCheckBoxMenuItem("Hola");
-		menu_2.add(op_5);	
-		
-		//menu de navegar de login a registro
-		JMenu menu_3 = new JMenu("Navegar");
-		barra.add(menu_3);
+		//MENU CUENTA
+		JMenuItem login = new JMenuItem("Login");
+		cuenta.add(login);
 		
 		JMenuItem registro = new JMenuItem("Registro");
-		menu_3.add(registro);
+		cuenta.add(registro);
 		
-		JMenuItem login = new JMenuItem("Login");
-		menu_3.add(login);
+		JMenuItem recuperacion = new JMenuItem("Recuperacion de cuenta");
+		cuenta.add(recuperacion);
 		
 		registro.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				router("register");
-				
 			}
-			
 		});
-		
+	
 		login.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				router("login");
+			}
+		});
+		
+		recuperacion.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("recuperacion");
 				
 			}
-			
 		});
+		
+		//MENU USUARIOS
+		JMenu usarios = new JMenu("Usuarios");
+		barra.add(usarios);
+		
+		JMenuItem alta = new JMenuItem("Alta");
+		usarios.add(alta);
+		
+		JMenuItem baja  = new JMenuItem("Baja");
+		usarios.add(baja);
+		
+		JMenuItem consulta = new JMenuItem("Consulta");
+		usarios.add(consulta);
+		
+		alta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("alta");
+				
+			}
+		});		
+		
+		baja.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("baja");
+				
+			}
+		});
+		
+		consulta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("consulta");
+				
+			}
+		});
+		
+		//AYUDA
+		JMenu ayuda = new JMenu("Ayuda");
+		barra.add(ayuda);
+		
+		JMenuItem op1 = new JMenuItem("¿Cómo crear un usuario?");
+		ayuda.add(op1);
+		
+		JMenuItem op2 = new JMenuItem("¿Cómo acceder al sistema?");
+		ayuda.add(op2);
+		
+		JMenuItem op3 = new JMenuItem("¿Qé pasa si olvidé mi contraseña?");
+		ayuda.add(op3);
+		
+		op1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("op1");
+				
+			}
+		});
+		
+		op2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("op2");
+				
+			}
+		});
+		
+		op3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("op3");
+				
+			}
+		});
+		
+		
 		
 		this.setJMenuBar(barra);
 		
 		this.repaint();
 		this.setVisible(true);
 	}
-	
+	 //PARA LA SECCIÓN DE CUENTA
 	public JPanel login()
 	{
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(500,800);
+		panel.setSize(1000,1000);
 		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
 		
@@ -425,10 +490,100 @@ public class Ventana extends JFrame{
 		if(route.equals("login")){
 			this.add(this.login());
 		}
+		if(route.equals("recuperacion")){
+			this.add(this.recuperacionCuenta());
+		}
+		if(route.equals("alta")){
+			this.add(this.alta());
+		}
+		if(route.equals("baja")){
+			this.add(this.baja());
+		}
+		if(route.equals("consulta")){
+			this.add(this.consultar());
+		}
+		if(route.equals("op1")){
+			this.add(this.op1());
+		}
+		if(route.equals("op2")){
+			this.add(this.op2());
+		}
+		if(route.equals("op3")){
+			this.add(this.op3());
+		}
+		
 		this.repaint();
 	}
 
-	public JPanel tabla2()
+	public JPanel recuperacionCuenta() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblRecuperacionCuenta = new JLabel("RECUPERACIÓN DE CUENTA");
+		lblRecuperacionCuenta.setSize(600,40); //tamaño
+		lblRecuperacionCuenta.setOpaque(true);
+		lblRecuperacionCuenta.setBackground((Color.decode("#bd9892")));
+		lblRecuperacionCuenta.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblRecuperacionCuenta.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblRecuperacionCuenta.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblRecuperacionCuenta);
+		
+		return panel;
+	}
+	
+	//PARA LA SECCIÓN DE USUARIOS
+	public JPanel alta() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblAlta = new JLabel("ALTA");
+		lblAlta.setSize(600,40); //tamaño
+		lblAlta.setOpaque(true);
+		lblAlta.setBackground((Color.decode("#bd9892")));
+		lblAlta.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblAlta.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblAlta.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblAlta);
+		
+		return panel;
+	}
+	
+	public JPanel baja() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblBaja = new JLabel("BAJA");
+		lblBaja .setSize(600,40); //tamaño
+		lblBaja .setOpaque(true);
+		lblBaja .setBackground((Color.decode("#bd9892")));
+		lblBaja .setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblBaja .setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblBaja .setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblBaja );
+		
+		return panel;
+	}
+	
+	
+	public JPanel consultar()
 	{
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
@@ -439,10 +594,10 @@ public class Ventana extends JFrame{
 		panel.setLayout(null);//quita el molde
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
-		lblBienvenido.setSize(230,40); //tamaño
+		lblBienvenido.setSize(600,40); //tamaño
 		lblBienvenido.setOpaque(true);
 		lblBienvenido.setBackground((Color.decode("#bd9892")));
-		lblBienvenido.setLocation(400,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblBienvenido.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblBienvenido.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
 		lblBienvenido.setFont(new Font("American TYpewrite", Font.BOLD, 30));
 		panel.add(lblBienvenido);
@@ -549,6 +704,79 @@ public class Ventana extends JFrame{
 		
 		return panel;
 	}
+	
+	//PARA LA SECCIÓN DE AYUDA
+	public JPanel op1() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblCrearUsuario = new JLabel("¿CÓMO CREAR UN USUARIO?");
+		lblCrearUsuario.setSize(600,40); //tamaño
+		lblCrearUsuario.setOpaque(true);
+		lblCrearUsuario.setBackground((Color.decode("#bd9892")));
+		lblCrearUsuario.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblCrearUsuario.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblCrearUsuario.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblCrearUsuario);
+		
+		return panel;
+	}
+	
+	public JPanel op2() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblCAccederSistema = new JLabel("¿CÓMO ACCEDER AL SISTEMA?");
+		lblCAccederSistema.setSize(600,40); //tamaño
+		lblCAccederSistema.setOpaque(true);
+		lblCAccederSistema.setBackground((Color.decode("#bd9892")));
+		lblCAccederSistema.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblCAccederSistema.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblCAccederSistema.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblCAccederSistema);
+		
+		return panel;
+	}
+	
+	public JPanel op3() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(1000,1000);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JLabel lblOlvidoContraseña = new JLabel("QUÉ PASA SI OLVIDÉ MI CONTRASEÑA?");
+		lblOlvidoContraseña.setSize(600,40); //tamaño
+		lblOlvidoContraseña.setOpaque(true);
+		lblOlvidoContraseña.setBackground((Color.decode("#bd9892")));
+		lblOlvidoContraseña.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblOlvidoContraseña.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblOlvidoContraseña.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		panel.add(lblOlvidoContraseña);
+		
+		return panel;
+	}
+	
+	
+	
+	
+	
+	
 	public JPanel login2() {
 		
 		JPanel panel = new JPanel();
