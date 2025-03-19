@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -45,7 +46,7 @@ public class Ventana extends JFrame{
 	public Ventana() {
 		this.setTitle("");//para el titulo de la ventana
 		this.setVisible(true);
-		this.setSize(1000,1000);
+		this.setSize(1000,700);
 		
 		//cambiar el icono a la ventana
 		ImageIcon img = new ImageIcon("src/api.png");
@@ -198,7 +199,7 @@ public class Ventana extends JFrame{
 	public JPanel login()
 	{
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -207,56 +208,81 @@ public class Ventana extends JFrame{
 		
 		panel.setPreferredSize(new Dimension(500,1000));
 		
-		JLabel lblBienvenido = new JLabel("Bienvenido");
-		lblBienvenido.setSize(230,40); //tamaño
-		lblBienvenido.setOpaque(true);
-		lblBienvenido.setBackground((Color.decode("#bd9892")));
-		lblBienvenido.setLocation(130,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
-		lblBienvenido.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblBienvenido.setFont(new Font("American TYpewrite", Font.BOLD, 30));
-		panel.add(lblBienvenido);
+		JLabel lblIniciarSesion = new JLabel("INICIAR SESIÓN");
+		lblIniciarSesion.setSize(600,40); //tamaño
+		lblIniciarSesion.setForeground(Color.WHITE);
+		//lblBienvenido.setOpaque(true);
+		//lblBienvenido.setBackground((Color.decode("#bd9892")));
+		lblIniciarSesion.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		lblIniciarSesion.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
+		lblIniciarSesion.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		panel.add(lblIniciarSesion);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(229, 150, 540, 480);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
 		JLabel lblEmail = new JLabel("Ingrese su email:");
-		lblEmail.setSize(200,135);//tamaño de email
-		lblEmail.setLocation(60,80);
+		lblEmail.setSize(200,54);//tamaño de email
+		lblEmail.setLocation(106,72);
 		lblEmail.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblEmail);
+		panel_1.add(lblEmail);
 		
 		JTextField txtEmail = new JTextField();
 		txtEmail.setSize(350,30); //tamaño del recuadro
-		txtEmail.setLocation(60,165);
+		txtEmail.setLocation(106,136);
 		txtEmail.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(txtEmail);	
+		panel_1.add(txtEmail);	
 		
 		JLabel lblContra = new JLabel("Ingrese su contraseña:");
 		lblContra.setSize(250,30);
-		lblContra.setLocation(60,195);
+		lblContra.setLocation(106,201);
 		lblContra.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblContra);
+		panel_1.add(lblContra);
 		
 		JPasswordField txtcontra = new JPasswordField();
 		txtcontra.setSize(350,30); //tamaño del recuadro
-		txtcontra.setLocation(60,225);
+		txtcontra.setLocation(106,255);
 		txtcontra.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(txtcontra);
+		panel_1.add(txtcontra);
 		
 		Checkbox cheRecordarme = new Checkbox("Recordarme");
-		cheRecordarme.setSize(100,30);
-		cheRecordarme.setLocation(60,250);
+		cheRecordarme.setSize(100,23);
+		cheRecordarme.setLocation(116,287);
 		cheRecordarme.setFont(new Font("American TYpewrite", Font.BOLD, 10));
-		panel.add(cheRecordarme);
+		panel_1.add(cheRecordarme);
 		
 		
 		JLabel lblOlvContra = new JLabel("¿Olvido su contraseña?");
-		lblOlvContra.setSize(500,30);
-		lblOlvContra.setLocation(290,250);
+		lblOlvContra.setSize(132,23);
+		lblOlvContra.setLocation(335,287);
 		lblOlvContra.setFont(new Font("American TYpewrite", Font.BOLD, 10));
-		panel.add(lblOlvContra);
+		panel_1.add(lblOlvContra);
+		
+		JButton olvidoContra = new JButton("");
+		olvidoContra.setSize(15,15);
+		olvidoContra.setLocation(315,290);
+		olvidoContra.setFont(new Font("American TYpewrite", Font.BOLD, 10));
+		panel_1.add(olvidoContra);
+		
+		olvidoContra.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("recuperacion");
+				
+			}
+		});
+		
 		
 		Button btnAcceder = new Button("ACCEDER");
+		btnAcceder.setActionCommand("");
 		btnAcceder .setSize(350,40); //tamaño
-		btnAcceder .setLocation(60,300);
-		btnAcceder.setBackground((Color.decode("#bd9892")));
+		btnAcceder .setLocation(106,358);
+		btnAcceder.setForeground(Color.WHITE);
+		btnAcceder.setBackground((Color.decode("#0d47a1")));
 		//btn1.setHorizontalAlignment(JLabel.CENTER);
 		btnAcceder .setFont(new Font("American TYpewrite", Font.BOLD, 20));
 		
@@ -265,7 +291,7 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				boolean flag1 = false, flag2 = true;
+				boolean flag1 = false, flag2 = false;
 				
 				if(txtEmail.getText().equals("")) {
 					txtEmail.setBorder(BorderFactory.createLineBorder(Color.red,3));
@@ -287,7 +313,7 @@ public class Ventana extends JFrame{
 						if(password.equals("keyrita")){
 							JOptionPane.showMessageDialog(null, "Hola","Error",JOptionPane.WARNING_MESSAGE);
 						}else {
-							JOptionPane.showMessageDialog(null, "Hola","Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Error","Error",JOptionPane.ERROR_MESSAGE);
 						}
 						
 					}
@@ -295,25 +321,23 @@ public class Ventana extends JFrame{
 					
 			}
 		});
-		panel.add(btnAcceder );
+		panel_1.add(btnAcceder );
+		btnAcceder.setBackground((Color.decode("#0d47a1")));
 		
-		Button btnIrRegistro = new Button("Ir al registro");
-		btnIrRegistro .setSize(350,40); //tamaño
-		btnIrRegistro .setLocation(60,400);
-		btnAcceder.setBackground((Color.decode("#bd9892")));
-		//btn1.setHorizontalAlignment(JLabel.CENTER);
-		btnIrRegistro .setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(btnIrRegistro);
-		
-		btnIrRegistro.addActionListener(new ActionListener() {
+		/*JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		btnRegresar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				router("register");
+				router("login");
 				
 			}
 		});
-		
+		*/
 		return panel;
 	}
 	
@@ -321,7 +345,7 @@ public class Ventana extends JFrame{
 		
 		JPanel panel = new JPanel();
 		
-		panel.setBackground(Color.decode("#bd9892")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -330,97 +354,106 @@ public class Ventana extends JFrame{
 		
 		panel.setPreferredSize(new Dimension(500,1000));
 		
-		JLabel lblRegistro = new JLabel("Registro");
-		lblRegistro.setSize(230,40); //tamaño
-		lblRegistro.setOpaque(true);
-		lblRegistro.setBackground(Color.decode("#ffe5dd"));
-		lblRegistro.setLocation(130,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
+		JLabel lblRegistro = new JLabel("REGISTRO");
+		lblRegistro.setSize(570,40); //tamaño
+		lblRegistro.setForeground(Color.WHITE);
+		//lblRegistro.setOpaque(true);
+		//lblRegistro.setBackground(Color.decode("#ffe5dd"));
+		lblRegistro.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblRegistro.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblRegistro.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblRegistro.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblRegistro);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(218, 134, 548, 501);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
 		JLabel lblNomUsuario = new JLabel("Nombre del usuario:");
 		lblNomUsuario.setOpaque(true);
-		lblNomUsuario.setBackground(Color.decode("#ffe5dd"));
+		lblNomUsuario.setBackground(Color.decode("#0d47a1"));
 		lblNomUsuario.setSize(350,30);//tamaño de email
-		lblNomUsuario.setLocation(70,130);
+		lblNomUsuario.setForeground(Color.WHITE);
+		lblNomUsuario.setLocation(93,33);
 		lblNomUsuario.setHorizontalAlignment(JLabel.CENTER);
 		lblNomUsuario.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblNomUsuario);
+		panel_1.add(lblNomUsuario);
 		
 		JTextField txtNomUsuario = new JTextField();
 		txtNomUsuario.setSize(350,30); //tamaño del recuadro
-		txtNomUsuario.setLocation(70,165);
+		txtNomUsuario.setLocation(93,73);
 		txtNomUsuario.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(txtNomUsuario);
+		panel_1.add(txtNomUsuario);
 		
 		JLabel lblBio = new JLabel("B I O");
 		lblBio.setSize(348,30);
-		lblBio.setLocation(70,210);
+		lblBio.setLocation(93,113);
 		lblBio.setHorizontalAlignment(JLabel.CENTER);
 		lblBio.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblBio);
+		panel_1.add(lblBio);
 		lblBio.setBorder(BorderFactory.createLineBorder(Color.BLACK,3));
 		
 		JTextArea txtAreaBio = new JTextArea("");
 		txtAreaBio.setSize(350,80);
-		txtAreaBio.setLocation(70,250);
+		txtAreaBio.setLocation(93,153);
 		txtAreaBio.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(txtAreaBio);
+		panel_1.add(txtAreaBio);
 		
 		JLabel lblPreferencias = new JLabel("PREFERENCIAS");
 		lblPreferencias.setSize(200,30);
-		lblPreferencias.setLocation(130,350);
+		lblPreferencias.setLocation(179,243);
 		lblBio.setHorizontalAlignment(JLabel.CENTER);
 		lblPreferencias.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblPreferencias);
+		panel_1.add(lblPreferencias);
 		
 		JCheckBox checkDulce = new JCheckBox("Dulce");
 		checkDulce.setSize(100,30);
-		checkDulce.setLocation(70,380);
+		checkDulce.setLocation(93,279);
 		checkDulce.setOpaque(false);
 		lblBio.setHorizontalAlignment(JLabel.CENTER);
 		checkDulce.setFont(new Font("American TYpewrite", Font.BOLD, 15));
-		panel.add(checkDulce);
+		panel_1.add(checkDulce);
 
 		
 		//checkDulce.setBorder(BorderFactory.createLineBorder(Color.BLACK,8));
 		
 		JCheckBox checkSalado = new JCheckBox("Salado");
 		checkSalado.setSize(110,30);
-		checkSalado.setLocation(160,380);
+		checkSalado.setLocation(211,279);
 		checkSalado.setOpaque(false);
 		checkSalado.setFont(new Font("American TYpewrite", Font.BOLD, 15));
-		panel.add(checkSalado);
+		panel_1.add(checkSalado);
 		
 		JCheckBox checkSaludable = new JCheckBox("Saludable");
 		checkSaludable.setSize(140,30);
-		checkSaludable.setLocation(280,380);
+		checkSaludable.setLocation(323,279);
 		checkSaludable.setOpaque(false);
 		checkSaludable.setFont(new Font("American TYpewrite", Font.BOLD, 15));
-		panel.add(checkSaludable);
+		panel_1.add(checkSaludable);
 		
 		JLabel lblTerminos = new JLabel("TERMINOS");
 		lblTerminos.setOpaque(true);
-		lblTerminos.setBackground(Color.decode("#ffe5dd"));
-		lblTerminos.setSize(350,30);
-		lblTerminos.setLocation(70,420);
+		lblTerminos.setForeground(Color.WHITE);
+		lblTerminos.setBackground(Color.decode("#0d47a1"));
+		lblTerminos.setSize(348,30);
+		lblTerminos.setLocation(103,315);
 		lblTerminos.setHorizontalAlignment(JLabel.CENTER);
 		lblTerminos.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(lblTerminos);
+		panel_1.add(lblTerminos);
 		
 		
 		JRadioButton jrbAcepTerm = new JRadioButton("Acepto los terminos");
 		jrbAcepTerm.setSize(200,40);
-		jrbAcepTerm.setLocation(70,450);
+		jrbAcepTerm.setLocation(93,351);
 		jrbAcepTerm.setOpaque(false);
-		panel.add(jrbAcepTerm);
+		panel_1.add(jrbAcepTerm);
 		
 		JRadioButton jrbNoAcepTerm = new JRadioButton("No acepto los terminos", true);
 		jrbNoAcepTerm.setSize(200,40);
-		jrbNoAcepTerm.setLocation(230,450);
+		jrbNoAcepTerm.setLocation(263,351);
 		jrbNoAcepTerm.setOpaque(false);
-		panel.add(jrbNoAcepTerm);
+		panel_1.add(jrbNoAcepTerm);
 		
 		ButtonGroup termsGrupo = new ButtonGroup();
 		termsGrupo.add(jrbNoAcepTerm);
@@ -434,13 +467,14 @@ public class Ventana extends JFrame{
 		panel.add(colonias);*/
 		
 		Button btnCrearCuenta = new Button("Crear Cuenta");
-		btnCrearCuenta.setSize(350,40); //tamaño
-		btnCrearCuenta.setLocation(70,550);
+		btnCrearCuenta.setSize(348,40); //tamaño
+		btnCrearCuenta.setLocation(100,413);
 		//btnCrearCuenta.setOpaque(true);
-		btnCrearCuenta.setBackground(Color.decode("#ffe5dd"));
+		btnCrearCuenta.setForeground(Color.WHITE);
+		btnCrearCuenta.setBackground(Color.decode("#0d47a1"));
 		//btn1.setHorizontalAlignment(JLabel.CENTER);
 		btnCrearCuenta.setFont(new Font("American TYpewrite", Font.BOLD, 20));
-		panel.add(btnCrearCuenta);
+		panel_1.add(btnCrearCuenta);
 	
 		btnCrearCuenta.addActionListener(new ActionListener() {
 			
@@ -458,9 +492,9 @@ public class Ventana extends JFrame{
 				}
 			}
 		});
-		panel.add(btnCrearCuenta);
+		panel_1.add(btnCrearCuenta);
 		
-		Button btnIrAlLogin = new Button("Ir al Login");
+		/*Button btnIrAlLogin = new Button("Ir al Login");
 		btnIrAlLogin.setSize(350,40); //tamaño
 		btnIrAlLogin.setLocation(70,650);
 		//btnCrearCuenta.setOpaque(true);
@@ -476,7 +510,23 @@ public class Ventana extends JFrame{
 				router("login");
 				
 			}
+		});*/
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
 		});
+		
+		
 		
 		return panel;
 	}
@@ -518,7 +568,7 @@ public class Ventana extends JFrame{
 	public JPanel recuperacionCuenta() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -526,13 +576,187 @@ public class Ventana extends JFrame{
 		panel.setLayout(null);//quita el molde
 		
 		JLabel lblRecuperacionCuenta = new JLabel("RECUPERACIÓN DE CUENTA");
-		lblRecuperacionCuenta.setSize(600,40); //tamaño
-		lblRecuperacionCuenta.setOpaque(true);
-		lblRecuperacionCuenta.setBackground((Color.decode("#bd9892")));
+		lblRecuperacionCuenta.setSize(590,40); //tamaño
+		lblRecuperacionCuenta.setForeground(Color.WHITE);
+		/*lblRecuperacionCuenta.setOpaque(true);
+		lblRecuperacionCuenta.setBackground((Color.decode("#bd9892")));*/
 		lblRecuperacionCuenta.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblRecuperacionCuenta.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblRecuperacionCuenta.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblRecuperacionCuenta.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblRecuperacionCuenta);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(122, 130, 742, 120);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNombreCorreo = new JLabel("Ingresa tu numero de telefono o correo electronico");
+		lblNombreCorreo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblNombreCorreo.setBounds(35, 23, 332, 13);
+		panel_1.add(lblNombreCorreo);
+		
+		JTextField txtNumTelCorreo = new JTextField();
+		txtNumTelCorreo.setBounds(45, 46, 590, 26);
+		panel_1.add(txtNumTelCorreo);
+		txtNumTelCorreo.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Envíar código");
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(Color.decode("#0d47a1"));
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnNewButton.setBounds(55, 82, 142, 28);
+		panel_1.add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "Código enviado","Código",JOptionPane.WARNING_MESSAGE);
+				
+			}
+		});
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBackground(new Color(187, 222, 251));
+		panel_2.setBounds(122, 260, 742, 120);
+		panel.add(panel_2);
+		
+		JLabel lblIngresarElCdigo = new JLabel("Ingresar el código de verificacion");
+		lblIngresarElCdigo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblIngresarElCdigo.setBounds(35, 23, 332, 13);
+		panel_2.add(lblIngresarElCdigo);
+		
+		JTextField txtCampo1 = new JTextField();
+		txtCampo1.setColumns(10);
+		txtCampo1.setBounds(65, 46, 37, 26);
+		panel_2.add(txtCampo1);
+		
+		JButton btnVerificarCdigo = new JButton("Verificar código");
+		btnVerificarCdigo.setForeground(Color.WHITE);
+		btnVerificarCdigo.setBackground(Color.decode("#0d47a1"));
+		btnVerificarCdigo.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnVerificarCdigo.setBounds(55, 82, 142, 28);
+		panel_2.add(btnVerificarCdigo);
+		
+		btnVerificarCdigo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "Código verificado","Código",JOptionPane.WARNING_MESSAGE);
+				
+			}
+		});
+		
+		JTextField txtCampo2 = new JTextField();
+		txtCampo2.setColumns(10);
+		txtCampo2.setBounds(112, 46, 37, 26);
+		panel_2.add(txtCampo2);
+		
+		JTextField txtCampo3 = new JTextField();
+		txtCampo3.setColumns(10);
+		txtCampo3.setBounds(160, 46, 37, 26);
+		panel_2.add(txtCampo3);
+		
+		JTextField txtCampo4 = new JTextField();
+		txtCampo4.setColumns(10);
+		txtCampo4.setBounds(207, 46, 37, 26);
+		panel_2.add(txtCampo4);
+		
+		JTextField txtCampo5 = new JTextField();
+		txtCampo5.setColumns(10);
+		txtCampo5.setBounds(254, 46, 37, 26);
+		panel_2.add(txtCampo5);
+		
+		JTextField txtCampo6 = new JTextField();
+		txtCampo6.setColumns(10);
+		txtCampo6.setBounds(301, 46, 37, 26);
+		panel_2.add(txtCampo6);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBackground(new Color(187, 222, 251));
+		panel_3.setBounds(122, 390, 742, 250);
+		panel.add(panel_3);
+		
+		JLabel lblNuevaContrasea = new JLabel("Nueva contraseña");
+		lblNuevaContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblNuevaContrasea.setBounds(35, 23, 332, 13);
+		panel_3.add(lblNuevaContrasea);
+		
+		JTextField txtNewContra = new JTextField();
+		txtNewContra.setColumns(10);
+		txtNewContra.setBounds(45, 44, 590, 28);
+		panel_3.add(txtNewContra);
+		
+		JButton btnRestablecerContrasea = new JButton("Restablecer contraseña");
+		btnRestablecerContrasea.setForeground(Color.WHITE);
+		btnRestablecerContrasea.setBackground(Color.decode("#0d47a1"));
+		btnRestablecerContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnRestablecerContrasea.setBounds(44, 156, 179, 28);
+		panel_3.add(btnRestablecerContrasea);
+		
+		btnRestablecerContrasea.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(
+					    null, 
+					    "Restablecer contraseña", 
+					    "", 
+					    JOptionPane.YES_NO_OPTION
+					);
+
+					if (option == JOptionPane.YES_OPTION) {
+					    JOptionPane.showMessageDialog(
+					        null, 
+					        "Tu contraseña a sido actualizada con exito!!", 
+					        "Confirmar contraseña", 
+					        JOptionPane.INFORMATION_MESSAGE
+					    );
+					} else if (option == JOptionPane.NO_OPTION) {
+					    // Salir o no hacer nada
+					    System.out.println("Operación cancelada."); 
+					}
+					
+			}
+		});
+		
+		JLabel lblConfirmarContrasea = new JLabel("Confirmar contraseña");
+		lblConfirmarContrasea.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblConfirmarContrasea.setBounds(35, 82, 332, 13);
+		panel_3.add(lblConfirmarContrasea);
+		
+		JTextField txtConfirmarContra = new JTextField();
+		txtConfirmarContra.setColumns(10);
+		txtConfirmarContra.setBounds(45, 105, 590, 28);
+		panel_3.add(txtConfirmarContra);
+		
+		JButton btnIniciarSesin = new JButton("Iniciar sesión");
+		btnIniciarSesin.setBackground(Color.decode("#0d47a1"));
+		btnIniciarSesin.setForeground(Color.WHITE);
+		btnIniciarSesin.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		btnIniciarSesin.setBounds(297, 187, 142, 28);
+		panel_3.add(btnIniciarSesin);
+		
+		
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
@@ -541,21 +765,109 @@ public class Ventana extends JFrame{
 	public JPanel alta() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(1000,1000);
+		panel.setSize(1000,700);
 		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
 		
-		JLabel lblAlta = new JLabel("ALTA");
+		/*JLabel lblAlta = new JLabel("ALTA");
 		lblAlta.setSize(600,40); //tamaño
 		lblAlta.setOpaque(true);
 		lblAlta.setBackground((Color.decode("#bd9892")));
 		lblAlta.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblAlta.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
 		lblAlta.setFont(new Font("American TYpewrite", Font.BOLD, 30));
-		panel.add(lblAlta);
+		panel.add(lblAlta);*/
+		
+		JLabel lblAltaUsuario = new JLabel("ALTA DE USUARIOS");
+		lblAltaUsuario.setForeground(Color.WHITE);
+		lblAltaUsuario.setBounds(330, 49, 314, 35);
+		lblAltaUsuario.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
+		panel.add(lblAltaUsuario);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(56, 144, 885, 450);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblFormularioRegistro = new JLabel("Formulario de Registro");
+		lblFormularioRegistro.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 24));
+		lblFormularioRegistro.setBackground(new Color(255, 255, 255));
+		lblFormularioRegistro.setForeground(new Color(0, 0, 0));
+		lblFormularioRegistro.setBounds(33, 29, 576, 22);
+		panel_1.add(lblFormularioRegistro);
+		
+		JLabel lblNombreCompleto = new JLabel("Nombre Completo:");
+		lblNombreCompleto.setForeground(Color.BLACK);
+		lblNombreCompleto.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		lblNombreCompleto.setBackground(Color.WHITE);
+		lblNombreCompleto.setBounds(33, 101, 576, 22);
+		panel_1.add(lblNombreCompleto);
+		
+		JLabel lblCorreo = new JLabel("Correo Electrónico:");
+		lblCorreo.setForeground(Color.BLACK);
+		lblCorreo.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		lblCorreo.setBackground(Color.WHITE);
+		lblCorreo.setBounds(33, 153, 576, 22);
+		panel_1.add(lblCorreo);
+		
+		JLabel lblNumTelefono = new JLabel("Numero de teléfono:");
+		lblNumTelefono.setForeground(Color.BLACK);
+		lblNumTelefono.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		lblNumTelefono.setBackground(Color.WHITE);
+		lblNumTelefono.setBounds(33, 211, 576, 22);
+		panel_1.add(lblNumTelefono);
+		
+		JLabel lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setForeground(Color.BLACK);
+		lblContraseña.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		lblContraseña.setBackground(Color.WHITE);
+		lblContraseña.setBounds(33, 265, 576, 22);
+		panel_1.add(lblContraseña);
+		
+		JTextField txtNomUsuario = new JTextField();
+		txtNomUsuario.setBounds(196, 96, 616, 37);
+		panel_1.add(txtNomUsuario);
+		txtNomUsuario.setColumns(10);
+		
+		JTextField txtCorreo = new JTextField();
+		txtCorreo.setColumns(10);
+		txtCorreo.setBounds(196, 148, 616, 37);
+		panel_1.add(txtCorreo);
+		
+		JTextField txtNumTel = new JTextField();
+		txtNumTel.setColumns(10);
+		txtNumTel.setBounds(196, 206, 616, 37);
+		panel_1.add(txtNumTel);
+		
+		JButton btnCrearUsuario = new JButton("Crear Usuario");
+		btnCrearUsuario.setBackground(Color.decode("#0d47a1"));
+		btnCrearUsuario.setForeground(Color.WHITE);
+		btnCrearUsuario.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		btnCrearUsuario.setBounds(346, 323, 192, 45);
+		panel_1.add(btnCrearUsuario);
+		
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setBounds(196, 260, 616, 37);
+		panel_1.add(passwordField);
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
@@ -563,21 +875,112 @@ public class Ventana extends JFrame{
 	public JPanel baja() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
-		panel.setSize(1000,1000);
+		panel.setSize(1000,700);
 		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
 		
-		JLabel lblBaja = new JLabel("BAJA");
+		JLabel lblBaja = new JLabel("BAJA DE USUARIOS");
 		lblBaja .setSize(600,40); //tamaño
-		lblBaja .setOpaque(true);
-		lblBaja .setBackground((Color.decode("#bd9892")));
+		//lblBaja .setOpaque(true);
+		//lblBaja .setBackground((Color.decode("#bd9892")));
+		lblBaja.setForeground(Color.WHITE);
 		lblBaja .setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblBaja .setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblBaja .setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblBaja .setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblBaja );
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(20, 144, 944, 494);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblListaUsuarios = new JLabel("Lista de usuarios");
+		lblListaUsuarios.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 24));
+		lblListaUsuarios.setBackground(new Color(255, 255, 255));
+		lblListaUsuarios.setForeground(new Color(0, 0, 0));
+		lblListaUsuarios.setBounds(53, 28, 268, 22);
+		panel_1.add(lblListaUsuarios);
+		
+        String titles []= {"No.Control", "Nombres", "Apellidos", "Correo Electronico"};
+		
+		String data [][]  = {
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+				{"20238029", "Luis Angel", "Lucero Torres", "luisLu23@aluabcs.mx"},
+				{"20238130", "Minerva", "Bojorquez Hernandez", "mineBojo23@aluabcs.mx"},
+				{"20238230", "Ana Jetzahi", "Bernal Ochoa", "anaochoa@aluabcs.mx"},
+				{"20238332", "Heriberto", "Lopez Ochoa", "herilopez@aluabcs.mx"},
+			
+			
+		};
+		
+		JScrollPane desplegar = new JScrollPane();
+		desplegar.setBounds(53, 121, 850, 300);
+		//desplegar.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		panel_1.add(desplegar);
+		
+		JTable tabla = new JTable (data,titles);
+		desplegar.setViewportView(tabla);
+		
+		JTextField txtBuscarUsuarios = new JTextField();
+		txtBuscarUsuarios.setFont(new Font("Trebuchet MS", Font.ITALIC, 15));
+		txtBuscarUsuarios.setForeground(new Color(192, 192, 192));
+		txtBuscarUsuarios.setBackground(new Color(255, 255, 255));
+		txtBuscarUsuarios.setText("BUSCAR USUARIOS");
+		txtBuscarUsuarios.setBounds(51, 74, 811, 32);
+		panel_1.add(txtBuscarUsuarios);
+		txtBuscarUsuarios.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\lupa.png"));
+		lblNewLabel.setBounds(864, 79, 24, 22);
+		panel_1.add(lblNewLabel);
+		
+		JButton btnEliminar = new JButton("ELIMINAR USUARIO");
+		btnEliminar.setBackground(Color.decode("#0d47a1"));
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
+		btnEliminar.setBounds(715, 431, 188, 38);
+		panel_1.add(btnEliminar);
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
+		
+		
 		
 		return panel;
 	}
@@ -586,20 +989,21 @@ public class Ventana extends JFrame{
 	public JPanel consultar()
 	{
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
 		panel.setLocation(0,0);
 		panel.setLayout(null);//quita el molde
 		
-		JLabel lblBienvenido = new JLabel("Bienvenido");
+		JLabel lblBienvenido = new JLabel("CONSULTAR USUARIOS");
+		lblBienvenido.setForeground(Color.WHITE);
 		lblBienvenido.setSize(600,40); //tamaño
-		lblBienvenido.setOpaque(true);
-		lblBienvenido.setBackground((Color.decode("#bd9892")));
+		//lblBienvenido.setOpaque(true);
+		//lblBienvenido.setBackground((Color.decode("#bd9892")));
 		lblBienvenido.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblBienvenido.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblBienvenido.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblBienvenido.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblBienvenido);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
@@ -626,9 +1030,9 @@ public class Ventana extends JFrame{
 		btnDescargar.setSize(80,30); //tamaño
 		btnDescargar.setLocation(740,230);
 		//btnCrearCuenta.setOpaque(true);
-		btnDescargar.setBackground(Color.decode("#88453e"));
+		btnDescargar.setBackground(new Color(187, 222, 251));
 		//btn1.setHorizontalAlignment(JLabel.CENTER);
-		btnDescargar.setForeground(Color.WHITE);
+		btnDescargar.setForeground(Color.BLACK);
 		btnDescargar.setFont(new Font("American TYpewrite", Font.BOLD, 12));
 		panel.add(btnDescargar);
 		
@@ -636,8 +1040,8 @@ public class Ventana extends JFrame{
 		btnAñadir.setSize(80,30); //tamaño
 		btnAñadir.setLocation(830,230);
 		//btnCrearCuenta.setOpaque(true);
-		btnAñadir.setForeground(Color.WHITE);
-		btnAñadir.setBackground(Color.decode("#88453e"));
+		btnAñadir.setForeground(Color.black);
+		btnAñadir.setBackground(new Color(187, 222, 251));
 		//btn1.setHorizontalAlignment(JLabel.CENTER);
 		btnAñadir.setFont(new Font("American TYpewrite", Font.BOLD, 15));
 		panel.add(btnAñadir);
@@ -701,6 +1105,21 @@ public class Ventana extends JFrame{
 		desplegar.setLocation(60, 280);
 		panel.add(desplegar);
 		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
+		
 		
 		return panel;
 	}
@@ -709,7 +1128,7 @@ public class Ventana extends JFrame{
 	public JPanel op1() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -717,13 +1136,90 @@ public class Ventana extends JFrame{
 		panel.setLayout(null);//quita el molde
 		
 		JLabel lblCrearUsuario = new JLabel("¿CÓMO CREAR UN USUARIO?");
+		lblCrearUsuario.setForeground(Color.WHITE);
 		lblCrearUsuario.setSize(600,40); //tamaño
-		lblCrearUsuario.setOpaque(true);
-		lblCrearUsuario.setBackground((Color.decode("#bd9892")));
+		//lblCrearUsuario.setOpaque(true);
+		//lblCrearUsuario.setBackground((Color.decode("#bd9892")));
 		lblCrearUsuario.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblCrearUsuario.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblCrearUsuario.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblCrearUsuario.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblCrearUsuario);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(122, 130, 742, 500);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblListaUsuarios = new JLabel("1.- Elegir la plataforma sitio web");
+		lblListaUsuarios.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblListaUsuarios.setBackground(new Color(255, 255, 255));
+		lblListaUsuarios.setForeground(new Color(0, 0, 0));
+		lblListaUsuarios.setBounds(148, 49, 513, 33);
+		panel_1.add(lblListaUsuarios);
+		
+		JLabel lblHacerClic = new JLabel("2. Hacer Clic en “Registrarse” o “Crear Cuenta”");
+		lblHacerClic.setForeground(Color.BLACK);
+		lblHacerClic.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblHacerClic.setBackground(Color.WHITE);
+		lblHacerClic.setBounds(148, 92, 513, 33);
+		panel_1.add(lblHacerClic);
+		
+		JLabel lblCompletarLa = new JLabel("3. Completar la Información Requerida");
+		lblCompletarLa.setForeground(Color.BLACK);
+		lblCompletarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblCompletarLa.setBackground(Color.WHITE);
+		lblCompletarLa.setBounds(148, 135, 490, 33);
+		panel_1.add(lblCompletarLa);
+		
+		JTextArea txtrNormalmenteTePedirian = new JTextArea();
+		txtrNormalmenteTePedirian.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+		txtrNormalmenteTePedirian.setText("Normalmente te pedirian\r\n - Nombre\r\n - Correo Electronico\r\n - Contraseña\r\n");
+		txtrNormalmenteTePedirian.setBounds(168, 187, 352, 81);
+		panel_1.add(txtrNormalmenteTePedirian);
+		
+		JLabel lblVerificarLa = new JLabel("4. Verificar la Información");
+		lblVerificarLa.setForeground(Color.BLACK);
+		lblVerificarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificarLa.setBackground(Color.WHITE);
+		lblVerificarLa.setBounds(148, 290, 503, 33);
+		panel_1.add(lblVerificarLa);
+		
+		JLabel lblAceptarTrminos = new JLabel("5. Aceptar Términos y Condiciones");
+		lblAceptarTrminos.setForeground(Color.BLACK);
+		lblAceptarTrminos.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblAceptarTrminos.setBackground(Color.WHITE);
+		lblAceptarTrminos.setBounds(148, 333, 393, 33);
+		panel_1.add(lblAceptarTrminos);
+		
+		JLabel lblVerificacinDe = new JLabel("6. Verificación de Identidad (si es necesario)");
+		lblVerificacinDe.setForeground(Color.BLACK);
+		lblVerificacinDe.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificacinDe.setBackground(Color.WHITE);
+		lblVerificacinDe.setBounds(148, 377, 554, 33);
+		panel_1.add(lblVerificacinDe);
+		
+		JLabel lblIniciarSesin = new JLabel("7. Iniciar Sesión");
+		lblIniciarSesin.setForeground(Color.BLACK);
+		lblIniciarSesin.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblIniciarSesin.setBackground(Color.WHITE);
+		lblIniciarSesin.setBounds(148, 420, 393, 33);
+		panel_1.add(lblIniciarSesin);
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
@@ -731,7 +1227,7 @@ public class Ventana extends JFrame{
 	public JPanel op2() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -739,13 +1235,83 @@ public class Ventana extends JFrame{
 		panel.setLayout(null);//quita el molde
 		
 		JLabel lblCAccederSistema = new JLabel("¿CÓMO ACCEDER AL SISTEMA?");
+		lblCAccederSistema.setForeground(Color.WHITE);
 		lblCAccederSistema.setSize(600,40); //tamaño
-		lblCAccederSistema.setOpaque(true);
-		lblCAccederSistema.setBackground((Color.decode("#bd9892")));
+		//lblCAccederSistema.setOpaque(true);
+		//lblCAccederSistema.setBackground((Color.decode("#bd9892")));
 		lblCAccederSistema.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblCAccederSistema.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblCAccederSistema.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblCAccederSistema.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblCAccederSistema);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(122, 130, 742, 500);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblListaUsuarios = new JLabel("1.- Elegir la plataforma sitio web");
+		lblListaUsuarios.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblListaUsuarios.setBackground(new Color(255, 255, 255));
+		lblListaUsuarios.setForeground(new Color(0, 0, 0));
+		lblListaUsuarios.setBounds(157, 67, 513, 33);
+		panel_1.add(lblListaUsuarios);
+		
+		JLabel lblHacerClic = new JLabel("2. Hacer Clic en “Iniciar Sesión” o “Acceder”");
+		lblHacerClic.setForeground(Color.BLACK);
+		lblHacerClic.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblHacerClic.setBackground(Color.WHITE);
+		lblHacerClic.setBounds(157, 110, 513, 33);
+		panel_1.add(lblHacerClic);
+		
+		JLabel lblCompletarLa = new JLabel("3. Introducir las Credenciales de Acceso");
+		lblCompletarLa.setForeground(Color.BLACK);
+		lblCompletarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblCompletarLa.setBackground(Color.WHITE);
+		lblCompletarLa.setBounds(157, 153, 490, 33);
+		panel_1.add(lblCompletarLa);
+		
+		JTextArea txtrNormalmenteTePedirian = new JTextArea();
+		txtrNormalmenteTePedirian.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+		txtrNormalmenteTePedirian.setText("Normalmente te pedirian\r\n - Nombre\r\n - Correo Electronico\r\n - Contraseña\r\n");
+		txtrNormalmenteTePedirian.setBounds(199, 198, 352, 81);
+		panel_1.add(txtrNormalmenteTePedirian);
+		
+		JLabel lblVerificarLa = new JLabel("4. Verificación de Seguridad (si es necesario)");
+		lblVerificarLa.setForeground(Color.BLACK);
+		lblVerificarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificarLa.setBackground(Color.WHITE);
+		lblVerificarLa.setBounds(150, 310, 503, 33);
+		panel_1.add(lblVerificarLa);
+		
+		JLabel lblAceptarTrminos = new JLabel("5. Hacer Clic en “Entrar” o “Acceder”");
+		lblAceptarTrminos.setForeground(Color.BLACK);
+		lblAceptarTrminos.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblAceptarTrminos.setBackground(Color.WHITE);
+		lblAceptarTrminos.setBounds(150, 353, 393, 33);
+		panel_1.add(lblAceptarTrminos);
+		
+		JLabel lblVerificacinDe = new JLabel("6. Acceso al Panel o Área de Usuario");
+		lblVerificacinDe.setForeground(Color.BLACK);
+		lblVerificacinDe.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificacinDe.setBackground(Color.WHITE);
+		lblVerificacinDe.setBounds(150, 403, 450, 33);
+		panel_1.add(lblVerificacinDe);
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
@@ -753,7 +1319,7 @@ public class Ventana extends JFrame{
 	public JPanel op3() {
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#ffe5dd")); //PARA PONER OTRO COLOR 
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
 		//Color.decode("numero del color que quieres"));
 		panel.setOpaque(true);//para habilitar el fondo de pantalla
 		panel.setSize(1000,1000);
@@ -762,12 +1328,103 @@ public class Ventana extends JFrame{
 		
 		JLabel lblOlvidoContraseña = new JLabel("QUÉ PASA SI OLVIDÉ MI CONTRASEÑA?");
 		lblOlvidoContraseña.setSize(600,40); //tamaño
-		lblOlvidoContraseña.setOpaque(true);
-		lblOlvidoContraseña.setBackground((Color.decode("#bd9892")));
+		lblOlvidoContraseña.setForeground(Color.WHITE);
+		//lblOlvidoContraseña.setOpaque(true);
+		//lblOlvidoContraseña.setBackground((Color.decode("#bd9892")));
 		lblOlvidoContraseña.setLocation(200,60);//DONNDE VAMOS A LOCALIZAR LA ETIQUETA
 		lblOlvidoContraseña.setHorizontalAlignment(JLabel.CENTER);//CENTRAR LA ETIQUETA
-		lblOlvidoContraseña.setFont(new Font("American TYpewrite", Font.BOLD, 30));
+		lblOlvidoContraseña.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		panel.add(lblOlvidoContraseña);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(187, 222, 251));
+		panel_1.setBounds(122, 130, 742, 500);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblListaUsuarios = new JLabel("1. Ir a la Página de Inicio de Sesión");
+		lblListaUsuarios.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblListaUsuarios.setBackground(new Color(255, 255, 255));
+		lblListaUsuarios.setForeground(new Color(0, 0, 0));
+		lblListaUsuarios.setBounds(149, 28, 513, 33);
+		panel_1.add(lblListaUsuarios);
+		
+		JLabel lblHacerClic = new JLabel("2. Hacer Clic en “¿Olvidaste tu Contraseña?” ");
+		lblHacerClic.setForeground(Color.BLACK);
+		lblHacerClic.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblHacerClic.setBackground(Color.WHITE);
+		lblHacerClic.setBounds(149, 71, 616, 33);
+		panel_1.add(lblHacerClic);
+		
+		JLabel lblCompletarLa = new JLabel("3. Ingresar tu Correo o Nombre de Usuario");
+		lblCompletarLa.setForeground(Color.BLACK);
+		lblCompletarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblCompletarLa.setBackground(Color.WHITE);
+		lblCompletarLa.setBounds(149, 210, 490, 33);
+		panel_1.add(lblCompletarLa);
+		
+		JTextArea txtrNormalmenteTePedirian = new JTextArea();
+		txtrNormalmenteTePedirian.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
+		txtrNormalmenteTePedirian.setText("Justo debajo del campo donde ingresas la contraseña, normalmente\r\n encontrarás un enlace que dice:\r\r\n -“¿Olvidaste tu contraseña?”\r\r\n -“Recuperar contraseña”\r\r\n -“Forgot Password”");
+		txtrNormalmenteTePedirian.setBounds(149, 101, 470, 99);
+		panel_1.add(txtrNormalmenteTePedirian);
+		
+		JLabel lblVerificarLa = new JLabel("4. Verificación de Identidad");
+		lblVerificarLa.setForeground(Color.BLACK);
+		lblVerificarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificarLa.setBackground(Color.WHITE);
+		lblVerificarLa.setBounds(149, 253, 503, 33);
+		panel_1.add(lblVerificarLa);
+		
+		JLabel lblAceptarTrminos = new JLabel("5. Revisar tu Correo o Mensaje SMS");
+		lblAceptarTrminos.setForeground(Color.BLACK);
+		lblAceptarTrminos.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblAceptarTrminos.setBackground(Color.WHITE);
+		lblAceptarTrminos.setBounds(148, 296, 393, 33);
+		panel_1.add(lblAceptarTrminos);
+		
+		JLabel lblVerificacinDe = new JLabel("6. Seguir el Enlace o Ingresar el Código");
+		lblVerificacinDe.setForeground(Color.BLACK);
+		lblVerificacinDe.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblVerificacinDe.setBackground(Color.WHITE);
+		lblVerificacinDe.setBounds(149, 339, 554, 33);
+		panel_1.add(lblVerificacinDe);
+		
+		JLabel lblIniciarSesin = new JLabel("7. Crear una Nueva Contraseña");
+		lblIniciarSesin.setForeground(Color.BLACK);
+		lblIniciarSesin.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblIniciarSesin.setBackground(Color.WHITE);
+		lblIniciarSesin.setBounds(148, 382, 393, 33);
+		panel_1.add(lblIniciarSesin);
+		
+		JLabel lblConfirmarLa = new JLabel("8. Confirmar la Nueva Contraseña");
+		lblConfirmarLa.setForeground(Color.BLACK);
+		lblConfirmarLa.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblConfirmarLa.setBackground(Color.WHITE);
+		lblConfirmarLa.setBounds(149, 414, 393, 33);
+		panel_1.add(lblConfirmarLa);
+		
+		JLabel lblIniciarSesin_1 = new JLabel("9. Iniciar Sesión con la Nueva Contraseña");
+		lblIniciarSesin_1.setForeground(Color.BLACK);
+		lblIniciarSesin_1.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 20));
+		lblIniciarSesin_1.setBackground(Color.WHITE);
+		lblIniciarSesin_1.setBounds(148, 457, 393, 33);
+		panel_1.add(lblIniciarSesin_1);
+		
+		JButton btnRegresar = new JButton("");
+		btnRegresar.setBackground(Color.decode("#0d47a1"));
+		btnRegresar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-izquierda (1).png"));
+		btnRegresar.setBounds(10, 10, 24, 24);
+		panel.add(btnRegresar);
+		
+		btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				router("login");
+				
+			}
+		});
 		
 		return panel;
 	}
