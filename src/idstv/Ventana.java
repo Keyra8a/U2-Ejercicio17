@@ -7,6 +7,7 @@ import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -63,9 +64,10 @@ public class Ventana extends JFrame{
 		this.setMinimumSize(new Dimension(390,400));
 		
 		//this.add(this.interfaz());
+		this.add(this.memorama());
 		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
-		this.add(this.login());
+		//this.add(this.login());
 //		this.add(this.registro(), BorderLayout.EAST);
 		//this.add(this.imagen());
 		//this.add(this.calculadora2());
@@ -1429,12 +1431,152 @@ public class Ventana extends JFrame{
 		return panel;
 	}
 	
+	public JPanel memorama(){
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.decode("#0d47a1")); //PARA PONER OTRO COLOR 
+		//Color.decode("numero del color que quieres"));
+		panel.setOpaque(true);//para habilitar el fondo de pantalla
+		panel.setSize(900,700);
+		panel.setLocation(0,0);
+		panel.setLayout(null);//quita el molde
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 128, 192));
+		panel_1.getRootPane().add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel = new JLabel("PUNTAJE:");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		lblNewLabel.setBounds(10, 10, 45, 13);
+		//lblNewLabel.setHorizontalAlignment(BorderLayout.NORTH);
+		panel_1.add(lblNewLabel);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.getRootPane().add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new GridLayout(4, 4, 10, 10));
+		
+		JButton btn1 = new JButton("");
+		//btn1.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn1);
+		
+		JButton btn2 = new JButton("");
+		//btn2.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn2);
+		
+		JButton btn3 = new JButton("");
+		//btn3.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn3);
+		
+		JButton btn4 = new JButton("");
+		//btn4.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn4);
+		
+		JButton btn5 = new JButton("");
+		//btn5.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn5);
+		
+		JButton btn6 = new JButton("");
+		//btn6.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn6);
+		
+		JButton btn7 = new JButton("");
+		//btn7.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn7);
+		
+		JButton btn8 = new JButton("");
+		//btn8.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn8);
+		
+		JButton btn9 = new JButton("");
+		//btn9.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn9);
+		
+		JButton btn10 = new JButton("");
+		//btn10.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn10);
+		
+		JButton btn11 = new JButton("");
+		//btn11.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn11);
+		
+		JButton btn12 = new JButton("");
+		//btn12.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn12);
+		
+		JButton btn13 = new JButton("");
+		//btn13.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn13);
+		
+		JButton btn14 = new JButton("");
+		//btn14.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn14);
+		
+		JButton btn15 = new JButton("");
+		//btn15.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn15);
+		
+		JButton btn16 = new JButton("");
+		//btn16.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\preguntas-mas-frecuentes.png"));
+		panel_2.add(btn16);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 128, 192));
+		panel_3.getRootPane().add(panel_3, BorderLayout.SOUTH);
+		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnReiniciar = new JButton("REINICIAR");
+		btnReiniciar.setFont(new Font("Times New Roman", Font.BOLD, 40));
+		panel_3.add(btnReiniciar);
+		
+		
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(128, 255, 0));
+		panel_4.getRootPane().add(panel_4, BorderLayout.EAST);
+		panel_4.setLayout(new GridLayout(8, 1, 10, 10));
+		
+		JLabel lblNewLabel_2 = new JLabel("M");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("E");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("M");
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_5 = new JLabel("O");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("R");
+		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_4 = new JLabel("A");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_8 = new JLabel("M");
+		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblNewLabel_8);
+		
+		JLabel lblA = new JLabel("A\r\n");
+		lblA.setFont(new Font("Times New Roman", Font.BOLD, 75));
+		panel_4.add(lblA);
+			
+		return panel;
+	}
 	
 	
 	
 	
 	
-	public JPanel login2() {
+ 	public JPanel login2() {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.decode("#e0e0e0")); //PARA PONER OTRO COLOR 
