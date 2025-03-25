@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -45,9 +46,9 @@ import javax.swing.JTextField;
 public class Ventana extends JFrame{
 
 	public Ventana() {
-		this.setTitle("");//para el titulo de la ventana
+		this.setTitle("Paint");//para el titulo de la ventana
 		this.setVisible(true);
-		this.setSize(1000,700);
+		this.setSize(800,600);
 		
 		//cambiar el icono a la ventana
 		ImageIcon img = new ImageIcon("src/api.png");
@@ -63,8 +64,10 @@ public class Ventana extends JFrame{
 		this.setMaximumSize(new Dimension(1000,1000));
 		this.setMinimumSize(new Dimension(390,400));
 		
+		
+		this.add(this.Paint());
 		//this.add(this.interfaz());
-		this.add(this.memorama());
+		//this.add(this.memorama());
 		//this.add(this.calculadora2());
 		//this.add(this.tabla2());
 		//this.add(this.login());
@@ -73,7 +76,7 @@ public class Ventana extends JFrame{
 		//this.add(this.calculadora2());
 		
 		//barra
-		JMenuBar barra = new JMenuBar();
+		/*JMenuBar barra = new JMenuBar();
 		JMenu cuenta = new JMenu("Cuenta");
 		barra.add(cuenta);
 		
@@ -193,10 +196,190 @@ public class Ventana extends JFrame{
 		
 		
 		this.setJMenuBar(barra);
-		
+		*/
 		this.repaint();
 		this.setVisible(true);
 	}
+	
+	public JPanel Paint() {
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(2, 136, 209));
+		//panel_1.setBorder(new LineBorder(new Color(0, 255, 0),100));
+		//frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(207, 51, 539, 464);
+		panel_1.add(panel);
+		panel.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(34, 51, 162, 464);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblHerramientas = new JLabel("Herramientas");
+		lblHerramientas.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblHerramientas.setBounds(10, 10, 126, 13);
+		panel_2.add(lblHerramientas);
+		
+		JLabel lbLinea1 = new JLabel("---------------------------------");
+		lbLinea1.setBounds(10, 24, 142, 13);
+		panel_2.add(lbLinea1);
+		
+		JButton btnPincel = new JButton("");
+		btnPincel.setBackground(Color.WHITE);
+		btnPincel.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\pincel-de-arte.png"));
+		btnPincel.setBounds(10, 38, 37, 21);
+		panel_2.add(btnPincel);
+		
+		JButton btnBorrador = new JButton("");
+		btnBorrador.setBackground(Color.WHITE);
+		btnBorrador.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\herramienta-de-borrador.png"));
+		btnBorrador.setBounds(10, 69, 37, 21);
+		panel_2.add(btnBorrador);
+		
+		JSlider slider = new JSlider();
+		slider.setBackground(Color.WHITE);
+		slider.setBounds(55, 96, 97, 13);
+		panel_2.add(slider);
+		
+		JLabel lblPincel = new JLabel("Pincel");
+		lblPincel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPincel.setBounds(57, 42, 45, 13);
+		panel_2.add(lblPincel);
+		
+		JLabel lblBorrador = new JLabel("Borrador");
+		lblBorrador.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBorrador.setBounds(57, 73, 79, 13);
+		panel_2.add(lblBorrador);
+		
+		JLabel lblGrosor = new JLabel("Grosor");
+		lblGrosor.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblGrosor.setBounds(10, 95, 45, 13);
+		panel_2.add(lblGrosor);
+		
+		JLabel lblOpGeometricas = new JLabel("Formas Geometricas");
+		lblOpGeometricas.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblOpGeometricas.setBounds(10, 121, 152, 21);
+		panel_2.add(lblOpGeometricas);
+		
+		JLabel lblLinea2 = new JLabel("--------------------------------");
+		lblLinea2.setBounds(10, 139, 142, 13);
+		panel_2.add(lblLinea2);
+		
+		JButton btn1 = new JButton("");
+		btn1.setBackground(Color.WHITE);
+		btn1.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\forma-rectangular.png"));
+		btn1.setBounds(10, 152, 37, 21);
+		panel_2.add(btn1);
+		
+		JButton btn2 = new JButton("");
+		btn2.setBackground(Color.WHITE);
+		btn2.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\circulo (1).png"));
+		btn2.setBounds(10, 183, 37, 21);
+		panel_2.add(btn2);
+		
+		JButton btn3 = new JButton("");
+		btn3.setBackground(Color.WHITE);
+		btn3.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\variante-de-contorno-de-triangulo.png"));
+		btn3.setBounds(10, 214, 37, 21);
+		panel_2.add(btn3);
+		
+		JButton btn4 = new JButton("");
+		btn4.setBackground(Color.WHITE);
+		btn4.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-de-linea.png"));
+		btn4.setBounds(10, 247, 37, 21);
+		panel_2.add(btn4);
+		
+		JLabel lblRectangulo = new JLabel("Rectangulo");
+		
+		lblRectangulo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblRectangulo.setBounds(57, 156, 79, 13);
+		panel_2.add(lblRectangulo);
+		
+		JLabel lblCirculo = new JLabel("Círculo");
+		lblCirculo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCirculo.setBounds(57, 187, 45, 13);
+		panel_2.add(lblCirculo);
+		
+		JLabel lblTriangulo = new JLabel("Triángulo");
+		lblTriangulo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTriangulo.setBounds(57, 218, 65, 13);
+		panel_2.add(lblTriangulo);
+		
+		JLabel lblLinea0 = new JLabel("Línea");
+		lblLinea0.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblLinea0.setBounds(57, 251, 45, 13);
+		panel_2.add(lblLinea0);
+		
+		JLabel lblColores = new JLabel("Colores");
+		lblColores.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblColores.setBounds(10, 278, 126, 21);
+		panel_2.add(lblColores);
+		
+		JLabel lblLinea = new JLabel("----------------------------------");
+		lblLinea.setBounds(10, 299, 142, 13);
+		panel_2.add(lblLinea);
+		
+		JButton btnBlanco = new JButton("");
+		btnBlanco.setBackground(Color.WHITE);
+		btnBlanco.setBounds(10, 314, 37, 21);
+		panel_2.add(btnBlanco);
+		
+		JButton btnGris = new JButton("");
+		btnGris.setBackground(Color.GRAY);
+		btnGris.setBounds(55, 314, 37, 21);
+		panel_2.add(btnGris);
+		
+		JButton btnAzul = new JButton("");
+		btnAzul.setBackground(Color.BLUE);
+		btnAzul.setBounds(99, 314, 37, 21);
+		panel_2.add(btnAzul);
+		
+		JButton btnRojo = new JButton("");
+		btnRojo.setBackground(Color.RED);
+		btnRojo.setBounds(10, 341, 37, 21);
+		panel_2.add(btnRojo);
+		
+		JButton btnVerde = new JButton("");
+		btnVerde.setBackground(Color.GREEN);
+		btnVerde.setBounds(55, 341, 37, 21);
+		panel_2.add(btnVerde);
+		
+		JButton btnAmarillo = new JButton("");
+		btnAmarillo.setBackground(Color.YELLOW);
+		btnAmarillo.setBounds(99, 341, 37, 21);
+		panel_2.add(btnAmarillo);
+		
+		JButton btnRosa = new JButton("");
+		btnRosa.setBackground(Color.PINK);
+		btnRosa.setBounds(99, 372, 37, 21);
+		panel_2.add(btnRosa);
+		
+		JButton btnAnaranjado = new JButton("");
+		btnAnaranjado.setBackground(Color.ORANGE);
+		btnAnaranjado.setBounds(57, 372, 37, 21);
+		panel_2.add(btnAnaranjado);
+		
+		JButton btnRosaBajo = new JButton("");
+		btnRosaBajo.setBackground(Color.MAGENTA);
+		btnRosaBajo.setBounds(10, 372, 37, 21);
+		panel_2.add(btnRosaBajo);
+		
+		JButton btnLimpiar = new JButton("Limpiar lienzo");
+		btnLimpiar.setForeground(Color.WHITE);
+		btnLimpiar.setBackground(new Color(2, 136, 209));
+		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLimpiar.setBounds(10, 417, 126, 21);
+		panel_2.add(btnLimpiar);
+		//panel_1.setLayout(null);
+		
+		return panel_1;
+	}
+	
+	
 	 //PARA LA SECCIÓN DE CUENTA
 	public JPanel login()
 	{
