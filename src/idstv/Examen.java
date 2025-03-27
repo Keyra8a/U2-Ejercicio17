@@ -189,12 +189,14 @@ public class Examen {
 		lblNewLabel_2.setBounds(49, 10, 211, 30);
 		panel_3_1.add(lblNewLabel_2);
 		
-		JButton btnAñadir = new JButton("New button");
-		btnAñadir.setBounds(442, 17, 36, 21);
+		JButton btnAñadir = new JButton("");
+		btnAñadir.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\mas.png"));
+		btnAñadir.setBounds(442, 10, 36, 35);
 		panel_3_1.add(btnAñadir);
 		
-		btnEliminar = new JButton("New button");
-		btnEliminar.setBounds(535, 17, 36, 21);
+		btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\eliminar (1).png"));
+		btnEliminar.setBounds(535, 10, 36, 30);
 		panel_3_1.add(btnEliminar);
 		
 		JLabel lblAñadir = new JLabel("Añadir");
