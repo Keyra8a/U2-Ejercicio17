@@ -17,12 +17,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
+import java.awt.Polygon;
 
 import javax.swing.JButton;
 import javax.swing.JSlider;
@@ -44,7 +50,15 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
     // Para almacenar los puntos dibujados
  	private List<PuntoConColor> points = new ArrayList<>();
  	private List<List<PuntoConColor>> listaDePuntos = new ArrayList<>();
+ 	
+ 	private List<Figura> figuras = new ArrayList<>();
 
+ 	private int pincel = 1;
+ 	private int rectangulo= 2;
+ 	private int circulo = 3;
+ 	private  int triangulo = 4;
+
+ 	private int herramientaSeleccionada = pincel; // Por defecto: pincel
 	/**
 	 * Launch the application.
 	 */
@@ -66,6 +80,19 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 	 */
 	public Paint() {
 		initialize();
+	}
+	
+	class Figura {
+	    Shape forma;
+	    Color color;
+	    int grosor;
+	    
+	    public Figura(Shape forma, Color color, int grosor) {
+	        this.forma = forma;
+	        this.color = color;
+	        this.grosor = grosor;
+	    }
+
 	}
 
 	class PuntoConColor {
@@ -120,6 +147,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		//para poder pintar en el lienzo
 		btnPincel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				herramientaSeleccionada = pincel;
 				pincelActivado = true;
 		        System.out.println("Pincel activado");
 			}
@@ -169,16 +197,35 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(lblNewLabel_1_1);
 		
 		JButton btnRectangulo = new JButton("");
+		btnRectangulo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				herramientaSeleccionada = rectangulo;
+				System.out.println("Rectángulo activado");
+			}
+			
+		});
 		btnRectangulo.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\forma-rectangular.png"));
 		btnRectangulo.setBounds(10, 152, 37, 21);
 		panel_2.add(btnRectangulo);
 		
 		JButton btnCIrculo = new JButton("");
+		btnCIrculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				herramientaSeleccionada = circulo;
+				System.out.println("Circulo activado");
+			}
+		});
 		btnCIrculo.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\circulo (1).png"));
 		btnCIrculo.setBounds(10, 183, 37, 21);
 		panel_2.add(btnCIrculo);
 		
 		JButton btnTriangulo = new JButton("");
+		btnTriangulo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				herramientaSeleccionada = triangulo;
+				System.out.println("Triángulo activado");
+			}
+		});
 		btnTriangulo.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\variante-de-contorno-de-triangulo.png"));
 		btnTriangulo.setBounds(10, 214, 37, 21);
 		panel_2.add(btnTriangulo);
@@ -309,6 +356,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		btnLimpiarLienzo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listaDePuntos.clear();
+		        figuras.clear();
 		        drawingPanel.repaint();
 			}
 		});
@@ -325,6 +373,35 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		// TODO Auto-generated method stub 
+        		int x = e.getX();
+        		int y = e.getY();
+        		int tamaño = 50;//tamaño de las figuras
+        		
+        		if (herramientaSeleccionada == rectangulo) {
+                    figuras.add(new Figura(
+                        new Rectangle(x - tamaño, y - tamaño, tamaño * 2, tamaño * 2),
+                        colorActual,
+                        grosorActual
+                    ));
+                } 
+                else if (herramientaSeleccionada == circulo) {
+                    figuras.add(new Figura(
+                        new Ellipse2D.Double(x - tamaño, y - tamaño, tamaño * 2, tamaño * 2),
+                        colorActual,
+                        grosorActual
+                    ));
+                }
+                else if (herramientaSeleccionada == triangulo) {
+                    int[] xPoints = {x, x - tamaño, x + tamaño};
+                    int[] yPoints = {y - tamaño, y + tamaño, y + tamaño};
+                    figuras.add(new Figura(
+                        new Polygon(xPoints, yPoints, 3),
+                        colorActual,
+                        grosorActual
+                    ));
+                }
+        		
+         		drawingPanel.repaint();
         	}
 
         	@Override
@@ -368,6 +445,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
                     drawingPanel.repaint();
                     lastPoint = newPoint;
                 }
+        		Point newPoint = e.getPoint();
+        		/*if(method==1)
+        			 points.addAll((Collection<? extends Paint<drawingPanel>.PuntoConColor>) newPoint);  
+            */
             }
         });	
 	}
@@ -408,8 +489,17 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
                     g2d.drawLine(p1.x, p1.y, p2.x, p2.y);
                 }
             }
+            //dibujar las figuras
+            for (Figura figura : figuras) {
+                g2d.setColor(figura.color);
+                g2d.setStroke(new BasicStroke(figura.grosor));
+                g2d.draw(figura.forma);
+            }
+
         }
 	}
+	
+
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
