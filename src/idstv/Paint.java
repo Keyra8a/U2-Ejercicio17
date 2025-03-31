@@ -45,6 +45,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 	private DrawingPanel drawingPanel; 
 	//variables para el color
 	boolean pincelActivado = false;
+	private boolean borradorActivado = false; 
     Color colorActual = Color.BLACK;
     int grosorActual = 3;
  	
@@ -151,6 +152,8 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 			public void actionPerformed(ActionEvent e) {
 				herramientaSeleccionada = pincel;
 				pincelActivado = true;
+				borradorActivado = false;
+			    colorActual = Color.BLACK;
 		        System.out.println("Pincel activado");
 			}
 		});
@@ -173,6 +176,17 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(sldGrosor);
 		
 		JButton btnBorrador = new JButton("");
+		btnBorrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				herramientaSeleccionada = pincel;
+		        pincelActivado = true;
+		        borradorActivado = true;
+		        colorActual = Color.WHITE; 
+		        grosorActual = 10;
+		        sldGrosor.setValue(grosorActual); 
+		        System.out.println("Borrador activado");
+			}
+		});
 		btnBorrador.setBackground(Color.WHITE);
 		
 		btnBorrador.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\herramienta-de-borrador.png"));
@@ -278,7 +292,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnRojo = new JButton("");
 		btnRojo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.RED;
+				if(!borradorActivado) {
+					colorActual = Color.RED;
+				}
+				
 			}
 		});
 		btnRojo.setBackground(new Color(255, 0, 0));
@@ -288,7 +305,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnBlanco = new JButton("");
 		btnBlanco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.WHITE;
+				if(!borradorActivado) {
+					colorActual = Color.WHITE;
+				}
+				
 			}
 		});
 		btnBlanco.setBackground(new Color(255, 255, 255));
@@ -298,7 +318,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnAzul = new JButton("");
 		btnAzul.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.BLUE;
+				if(!borradorActivado) {
+					colorActual = Color.BLUE;
+				}
+				
 			}
 		});
 		btnAzul.setBackground(new Color(0, 0, 205));
@@ -308,7 +331,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnAmarillo = new JButton("");
 		btnAmarillo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.YELLOW;
+				if(!borradorActivado) {
+					colorActual = Color.YELLOW;
+				}
+				
 			}
 		});
 		btnAmarillo.setBackground(new Color(255, 255, 0));
@@ -318,7 +344,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnNegro = new JButton("");
 		btnNegro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.BLACK;
+				if(!borradorActivado) {
+					colorActual = Color.BLACK;
+				}
+				
 			}
 		});
 		btnNegro.setBackground(new Color(0, 0, 0));
@@ -328,7 +357,10 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		JButton btnRosa = new JButton("");
 		btnRosa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				colorActual = Color.PINK;
+				if(!borradorActivado) {
+					colorActual = Color.PINK;
+				}
+				
 			}
 		});
 		btnRosa.setBackground(new Color(255, 20, 147));
@@ -341,8 +373,11 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		btnColores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Color nuevoColor = JColorChooser.showDialog(frame, "C", colorActual);
-		        if (nuevoColor != null) {
-		            colorActual = nuevoColor;
+		        if (!borradorActivado) { 
+		            Color nuevoColor2 = JColorChooser.showDialog(frame, "C", colorActual);
+		            if (nuevoColor != null) {
+		                colorActual = nuevoColor;
+		            }
 		        }
 			}
 		});
