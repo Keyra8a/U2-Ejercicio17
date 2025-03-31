@@ -31,6 +31,8 @@ import java.awt.geom.Ellipse2D;
 import java.awt.Polygon;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JColorChooser;
 import javax.swing.JSlider;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -152,14 +154,12 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		        System.out.println("Pincel activado");
 			}
 		});
+		btnPincel.setBackground(Color.WHITE);
 		btnPincel.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\pincel-de-arte.png"));
 		btnPincel.setBounds(10, 38, 37, 21);
 		panel_2.add(btnPincel);
 		
-		JButton btnBorrador = new JButton("");
-		btnBorrador.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\herramienta-de-borrador.png"));
-		btnBorrador.setBounds(10, 69, 37, 21);
-		panel_2.add(btnBorrador);
+		
 		
 		JSlider sldGrosor = new JSlider();
 		//para el grosor
@@ -171,6 +171,13 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 	    });
 		sldGrosor.setBounds(55, 96, 97, 13);
 		panel_2.add(sldGrosor);
+		
+		JButton btnBorrador = new JButton("");
+		btnBorrador.setBackground(Color.WHITE);
+		
+		btnBorrador.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\herramienta-de-borrador.png"));
+		btnBorrador.setBounds(10, 69, 37, 21);
+		panel_2.add(btnBorrador);
 		
 		JLabel lblPincel = new JLabel("Pincel");
 		lblPincel.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -197,6 +204,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(lblNewLabel_1_1);
 		
 		JButton btnRectangulo = new JButton("");
+		btnRectangulo.setBackground(Color.WHITE);
 		btnRectangulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				herramientaSeleccionada = rectangulo;
@@ -209,6 +217,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(btnRectangulo);
 		
 		JButton btnCIrculo = new JButton("");
+		btnCIrculo.setBackground(Color.WHITE);
 		btnCIrculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				herramientaSeleccionada = circulo;
@@ -220,6 +229,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(btnCIrculo);
 		
 		JButton btnTriangulo = new JButton("");
+		btnTriangulo.setBackground(Color.WHITE);
 		btnTriangulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				herramientaSeleccionada = triangulo;
@@ -231,6 +241,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(btnTriangulo);
 		
 		JButton btnLinea = new JButton("");
+		btnLinea.setBackground(Color.WHITE);
 		btnLinea.setIcon(new ImageIcon("C:\\Users\\keyra\\Downloads\\flecha-de-linea.png"));
 		btnLinea.setBounds(10, 247, 37, 21);
 		panel_2.add(btnLinea);
@@ -324,13 +335,21 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		btnRosa.setBounds(99, 341, 37, 21);
 		panel_2.add(btnRosa);
 		
-		JButton btn = new JButton("");
-		btn.addActionListener(new ActionListener() {
+		JButton btnColores = new JButton("");
+		btnColores.setIcon(new ImageIcon("C:\\Users\\keyra\\OneDrive\\Documents\\Programación lll\\LoginRegistro\\img\\paletaColor.jpg"));
+		btnColores.setFont(new Font("Tahoma", Font.PLAIN, 6));
+		btnColores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Color nuevoColor = JColorChooser.showDialog(frame, "C", colorActual);
+		        if (nuevoColor != null) {
+		            colorActual = nuevoColor;
+		        }
 			}
 		});
-		btn.setBounds(99, 372, 37, 21);
-		panel_2.add(btn);
+		btnColores.setBackground(Color.WHITE);
+
+		btnColores.setBounds(99, 372, 37, 21);
+		panel_2.add(btnColores);
 		
 		JButton btnVerde = new JButton("");
 		btnVerde.addActionListener(new ActionListener() {
@@ -353,6 +372,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 		panel_2.add(btnMorado);
 		
 		JButton btnLimpiarLienzo = new JButton("Limpiar lienzo");
+		btnLimpiarLienzo.setBackground(Color.WHITE);
 		btnLimpiarLienzo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listaDePuntos.clear();
