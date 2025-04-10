@@ -116,6 +116,7 @@ public class Paint<drawingPanel> implements MouseListener , MouseMotionListener 
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);
+		frame.setTitle("Paint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel_1 = new JPanel();
