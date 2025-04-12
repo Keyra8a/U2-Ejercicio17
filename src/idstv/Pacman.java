@@ -17,10 +17,12 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import idstv.Paint.DrawingPanel;
+import java.awt.Font;
 
 public class Pacman implements KeyListener {
 
@@ -29,6 +31,16 @@ public class Pacman implements KeyListener {
 	private int velocidad = 10;
 	private Player pacman;
 	private List<Player> paredes = new ArrayList<>();
+	
+	private int direccionX = 0;
+	private int direccionY = 0;
+	private boolean enMovimiento = false;
+	
+	
+	private JLabel tiempoLabel;
+	private int mil = 0;
+	private int segundos = 0;
+	private Timer timerJuego;
 	
 	Timer timer;
 	
@@ -78,6 +90,13 @@ public class Pacman implements KeyListener {
 		pnlNorte.setLayout(new GridLayout(2, 1, 0, 0));
 		pnlNorte.setBorder(BorderFactory.createLineBorder(Color.BLACK,4));
 		
+		tiempoLabel = new JLabel("00:00");
+		tiempoLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+	    tiempoLabel.setForeground(Color.WHITE);
+	    tiempoLabel.setHorizontalAlignment(JLabel.CENTER);
+	    //tiempoLabel.setFont(new Font("Arial", Font.BOLD, 20));
+	    pnlNorte.add(tiempoLabel);
+		
 		JPanel footer = new JPanel();
 		footer.setBackground(new Color(0, 0, 160));
 		frame.getContentPane().add(footer, BorderLayout.SOUTH);
@@ -101,27 +120,44 @@ public class Pacman implements KeyListener {
 				// TODO Auto-generated method stub
 				pacman.x = 200;
 				pacman.y = 100;
-				
+				//segundosTrans = 0;
+		        actualizarTiempo();
 				tablero.repaint();
 				tablero.requestFocus();
 				
 			}
 		});
 		footer.add(reiniciar);
-		//score jlabel
-		//boton para reiniciar
-		//boton reinicar
-		//limites
-		
+
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				moverPacman();
 				tablero.repaint();
 				
 			}
 		});
 		timer.start();	
+		
+		timerJuego = new Timer(10, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					mil++;
+					if(mil >= 100) {
+		                mil = 0;
+		                segundos++;
+		            }
+		            actualizarTiempo();
+				}
+		});
+		//timerJuego.start();	
+	}
+	
+	private void actualizarTiempo() {
+
+		String tiempoFormateado = String.format("%02d:%02d", segundos, mil);
+	    tiempoLabel.setText(tiempoFormateado);
 	}
 	
 	 class DrawingPanel extends JPanel {
@@ -143,6 +179,41 @@ public class Pacman implements KeyListener {
 	            
 	        }
 	    }
+	 
+	 private void moverPacman() {
+			if(!enMovimiento) return;
+			
+			int nuevaX = pacman.x + (direccionX * velocidad);
+		    int nuevaY = pacman.y + (direccionY * velocidad);
+		    
+		    //BORDES
+		    if (nuevaX <= -pacman.w) nuevaX = tablero.getWidth();
+		    else if (nuevaX >= tablero.getWidth()) nuevaX = -pacman.w;
+		    
+		    if (nuevaY <= -pacman.h) nuevaY = tablero.getHeight();
+		    else if (nuevaY >= tablero.getHeight()) nuevaY = -pacman.h;
+		    
+		    //COLISIONES
+		    Player tempPacman = new Player(nuevaX, nuevaY, pacman.w, pacman.h, pacman.c);
+		    boolean puedeMoverse = true;
+		    
+		    for (Player pared : paredes) {
+		        if (tempPacman.colision(pared)) {
+		            puedeMoverse = false;
+		            break;
+		        }
+		    }
+		    
+		    if (puedeMoverse) {
+		        pacman.x = nuevaX;
+		        pacman.y = nuevaY;
+		    } else {
+		        //SI HAY COLISION, SE DETIENE EL PACMAN
+		        enMovimiento = false;
+		        direccionX = 0;
+		        direccionY = 0;
+		    }
+		}
 	 
 	 class Player{
 		   
@@ -171,99 +242,37 @@ public class Pacman implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
-		int nuevaX = pacman.x;
-		int nuevaY = pacman.y;
-		
-		switch(e.getKeyCode()) {
-		case KeyEvent.VK_W: //ARRIBA
-			nuevaY -= velocidad;
-			if(nuevaY <= -30) {
-				nuevaY = 460;
-			}
-			break;
-		case KeyEvent.VK_S: // ABAJO
-            nuevaY += velocidad;
-            if(nuevaY >= 460) {
-            	nuevaY = -30;
-			}
-            break;
-        case KeyEvent.VK_A: // IZQUIERDA
-            nuevaX -= velocidad;
-            if(nuevaX <= -25){
-            	nuevaX = 425;
-			}
-            break;
-        case KeyEvent.VK_D: // DERECHA
-            nuevaX += velocidad;
-            if(nuevaX >= 445) {
-            	nuevaX =-25;
-			}
-            break;
-		}
-		
-		//VERIFICAR COLISION
-		Boolean puedeMoverse = true;
-		Player temp_pacman = new Player(nuevaX, nuevaY, pacman.w, pacman.h, pacman.c);
-	
-		for (Player pared : paredes) {
-			if (temp_pacman.colision(pared)) {
-				puedeMoverse = false;
-				break;
-			}
-		}
-		
-		if (puedeMoverse) {
-			pacman.x = nuevaX;
-			pacman.y = nuevaY;
-		}
-		
-       if (pacman.x <= -pacman.w) {
-            pacman.x = tablero.getWidth();
-        } else if (pacman.x >= tablero.getWidth()) {
-            pacman.x = -pacman.w;
-        }
-        
-        if (pacman.y <= -pacman.h) {
-            pacman.y = tablero.getHeight();
-        } else if (pacman.y >= tablero.getHeight()) {
-            pacman.y = -pacman.h;
-        }
-        
-		/*System.out.println(y);
-		if(e.getKeyCode() == 87) {
-			y-=5;
-			//ARRIBA
-			if(y <= -30) {
-				y = 460;
-			}
-		}
-		if(e.getKeyCode() == 83) {
-			y+=5;
-			//ABAJO
-			if(y >= 460) {
-				y = -30;
-			}
+		int keyCode = e.getKeyCode();
 
+		if(!timerJuego.isRunning()) { 
+			mil = 0;
+	        segundos = 0;
+	        timerJuego.start();   
+	    }
+		
+		if(keyCode == KeyEvent.VK_W){ //ARRIBA
+			direccionY =-1;
+			direccionX = 0;
+			enMovimiento = true;
+		}else if(keyCode == KeyEvent.VK_S) { //ABAJO
+			direccionY = 1;
+			direccionX = 0;
+			enMovimiento = true;
+		}else if(keyCode == KeyEvent.VK_A) {// IZQUIERDA
+			direccionX = -1;
+			direccionY = 0;
+			enMovimiento = true;
+		}else if(keyCode == KeyEvent.VK_D) { //DERECHA
+			direccionX = 1;
+			direccionY = 0;
+			enMovimiento = true;
 		}
-		if(e.getKeyCode() == 65) {
-			x-=5;
-			//LIMITE IZQUIERDA
-			if(x <= -25){
-				x = 425;
-			}
-
-		}
-		if(e.getKeyCode() == 68) {
-			x+=5;
-			//LIMITE DE LA DERECHA
-			if(x >= 445) {
-				x =-25;
-			}
-		}*/
+		
 		tablero.repaint();
 
 	}
+	
+	
 
 	@Override
 	public void keyReleased(KeyEvent e) {
