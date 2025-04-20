@@ -18,17 +18,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import idstv.Paint.DrawingPanel;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class Pacman implements KeyListener {
 
 	private JFrame frame;
 	private DrawingPanel tablero;
-	private int velocidad = 10;
+	private int velocidad = 5;
 	private Player pacman;
 	private List<Player> paredes = new ArrayList<>();
 	
@@ -44,6 +46,32 @@ public class Pacman implements KeyListener {
 	
 	Timer timer;
 	
+	private List<Player> puntos = new ArrayList<>();
+	private int puntosRestantes;
+	private boolean juegoTerminado;
+	
+	private int tamCelda = 30;
+	private int anchoMapa = 15; //width
+	private int alturaMapa = 15; //height
+	
+	//MATRIZ PARA EL MAPA ( 1 = PARED, 0 = CAMINO)
+	private int[][] mapa = {
+			{1,0,1,1,0,1,1,0,1,1,0,1,1,0,1},
+	        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	        {1,0,1,1,0,1,1,0,1,1,0,1,1,0,1},
+	        {1,0,0,0,0,1,0,0,0,1,0,0,0,0,1},
+	        {1,0,1,1,0,1,0,0,0,1,0,1,1,0,1},
+	        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	        {1,1,1,1,0,1,1,0,1,1,0,1,1,1,1},
+	        {0,0,0,0,0,1,0,0,0,1,0,0,0,0,0},
+	        {1,1,1,1,0,1,1,1,1,1,0,1,1,1,1},
+	        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	        {1,0,1,1,0,1,0,0,0,1,0,1,1,0,1},
+	        {1,0,0,0,0,1,0,0,0,1,0,0,0,0,1},
+	        {1,0,1,1,0,1,1,0,1,1,0,1,1,0,1},
+	        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	        {1,0,1,1,0,1,1,0,1,1,0,1,1,0,1}	
+	};
 
 	/*
 	 * Launch the application.
@@ -73,25 +101,32 @@ public class Pacman implements KeyListener {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 550);
+		frame.setBounds(100, 100, 471, 672);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		pacman = new Player(200, 200, 30, 30, Color.yellow);
+		pacman = new Player(tamCelda * 7, tamCelda * 7, tamCelda - 5, tamCelda - 5, Color.YELLOW);
 		
+		
+		crearParedes();
 		//paredes
-		paredes.add(new Player(120, 300, 200, 30, Color.orange));
+		/*paredes.add(new Player(120, 300, 200, 30, Color.orange));
 		paredes.add(new Player(120, 50, 200, 30, Color.orange));
 		paredes.add(new Player(400, 50, 30, 200, Color.magenta));
-			
+			*/
 		JPanel pnlNorte = new JPanel();
-		pnlNorte.setBackground(new Color(0, 0, 128));
+		pnlNorte.setBackground(new Color(0, 0,0));
 		frame.getContentPane().add(pnlNorte, BorderLayout.NORTH);
 		pnlNorte.setLayout(null);
 		pnlNorte.setLayout(new GridLayout(2, 1, 0, 0));
-		pnlNorte.setBorder(BorderFactory.createLineBorder(Color.BLACK,4));
+		pnlNorte.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		JLabel lblImg = new JLabel("");
+		lblImg.setIcon(new ImageIcon("pacman.png"));
+		lblImg.setHorizontalAlignment(JLabel.CENTER);
+		pnlNorte.add(lblImg);
 		
 		tiempoLabel = new JLabel("00:00");
-		tiempoLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		tiempoLabel.setFont(new Font("Tahoma", Font.BOLD, 60));
 	    tiempoLabel.setForeground(Color.WHITE);
 	    tiempoLabel.setHorizontalAlignment(JLabel.CENTER);
 	    //tiempoLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -118,12 +153,28 @@ public class Pacman implements KeyListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				pacman.x = 200;
-				pacman.y = 100;
+				pacman.x = tamCelda * 7;
+				pacman.y = tamCelda * 7;
 				//segundosTrans = 0;
+				mil = 0;
+				segundos = 0;
 		        actualizarTiempo();
 				tablero.repaint();
 				tablero.requestFocus();
+				
+				
+				//reiniciar puntos
+				puntos.clear();
+				paredes.clear();
+				crearParedes();
+				
+				actualizarTiempo();
+				tablero.repaint();
+				tablero.requestFocus();
+				
+				//reiniciar timers
+				timer.start();
+				timerJuego.start();
 				
 			}
 		});
@@ -154,6 +205,24 @@ public class Pacman implements KeyListener {
 		//timerJuego.start();	
 	}
 	
+	private void crearParedes() {
+		//para crear las paredes
+		for(int y = 0; y < alturaMapa; y++){
+			for(int x = 0; x < anchoMapa; x++) {
+				if(mapa[y][x] == 1){
+					paredes.add(new Player(x * tamCelda, y * tamCelda, tamCelda, tamCelda, Color.BLUE));
+				}else if(mapa[y][x] == 0) {
+					//para los puntos
+					puntos.add(new Player(
+							x * tamCelda + tamCelda/2 -3,
+							y * tamCelda + tamCelda/2 -3,
+							6, 6, Color.WHITE));
+				}
+			}
+		}
+		puntosRestantes = puntos.size();
+	}
+	
 	private void actualizarTiempo() {
 
 		String tiempoFormateado = String.format("%02d:%02d", segundos, mil);
@@ -174,14 +243,42 @@ public class Pacman implements KeyListener {
 	            
 	            for(Player pared : paredes) {
 	            	g2d.setColor(pared.c);
-	            	g2d.fillRect(pared.x, pared.y, pared.w, pared.h);  	
+	            	g2d.fillRect(pared.x, pared.y, pared.w, pared.h);  
+	            	
+	            	// Borde interno (2 píxeles más pequeño)
+	                g2d.setColor(new Color(255, 255, 255, 150)); // Blanco semitransparente
+	                g2d.drawRect(pared.x + 2, pared.y + 2, pared.w - 4, pared.h - 4);
 	            }
+	            
+	            //DIBUJAR PUNTOS
+	            
+	            for(Player punto : puntos) {
+	            	if(punto != null) {
+	            		g2d.setColor(punto.c);
+	                    g2d.fillOval(punto.x, punto.y, punto.w, punto.h);
+	            	}
+	            } 
+	            
+	            /*if(puntosRestantes <= 0) {
+	            	juegoTerminado = true;
+	            	timerJuego.stop();
+	            	timer.stop();
+	            	
+	            	// Mostrar mensaje con JOptionPane
+	                String tiempoFinal = String.format("%02d:%02d", segundos, mil);
+	                JOptionPane.showMessageDialog(frame, 
+	                    "¡Felicidades! Completaste el juego en: " + tiempoFinal,
+	                    "Juego Terminado", 
+	                    JOptionPane.INFORMATION_MESSAGE);
+
+	            }*/
+	            
 	            
 	        }
 	    }
 	 
 	 private void moverPacman() {
-			if(!enMovimiento) return;
+			if(!enMovimiento || juegoTerminado) return;
 			
 			int nuevaX = pacman.x + (direccionX * velocidad);
 		    int nuevaY = pacman.y + (direccionY * velocidad);
@@ -207,6 +304,31 @@ public class Pacman implements KeyListener {
 		    if (puedeMoverse) {
 		        pacman.x = nuevaX;
 		        pacman.y = nuevaY;
+		        
+		        //para las colisiones con los puntos
+		        for(int i = 0; i < puntos.size(); i++) {
+		        	Player punto = puntos.get(i);
+		        	if(punto != null && tempPacman.colision(punto)) {
+		        		puntos.set(i, null);
+		        		puntosRestantes--;
+		        		
+		        		if(puntosRestantes <= 0) {
+		        			juegoTerminado = true;
+		        			timerJuego.stop();
+		        			timer.stop();
+		        			
+		        			String tiempoFinal = String.format("%02d:%02d", segundos, mil);
+		                    JOptionPane.showMessageDialog(frame, 
+		                        "¡Felicidades! Completaste el juego en: " + tiempoFinal,
+		                        "Juego Terminado", 
+		                        JOptionPane.INFORMATION_MESSAGE);
+		                    
+		                    // Opcional: reiniciar el juego automáticamente
+		                    reiniciarJuego();
+		        		}
+		        		break;
+		        	}
+		        }
 		    } else {
 		        //SI HAY COLISION, SE DETIENE EL PACMAN
 		        enMovimiento = false;
@@ -214,6 +336,31 @@ public class Pacman implements KeyListener {
 		        direccionY = 0;
 		    }
 		}
+
+	 private void reiniciarJuego() {
+	     pacman.x = tamCelda * 7;
+	     pacman.y = tamCelda * 7;
+	     mil = 0;
+	     segundos = 0;
+	     juegoTerminado = false;
+	     
+	     enMovimiento = false;
+	     direccionX = 0;
+	     direccionY = 0;
+	     
+	     // Reiniciar puntos y paredes
+	     puntos.clear();
+	     paredes.clear();
+	     crearParedes();
+	     
+	     actualizarTiempo();
+	     tablero.repaint();
+	     tablero.requestFocus();
+	     
+	     // Reiniciar timers
+	     timer.start();
+	     timerJuego.start();
+	 }
 	 
 	 class Player{
 		   
